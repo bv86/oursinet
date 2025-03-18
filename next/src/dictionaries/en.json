@@ -1,0 +1,23 @@
+{
+    "section": {
+        "home": "Home",
+        "about_me": "About me",
+        "blog": "Blog"
+    },
+    "footer": {
+        "follow_me": "Follow me",
+        "all_rights_reserved": "All rights reserved"
+    },
+    "home": {
+        "title": "Welcome to my website!",
+        "description": "This is a blog about web development and programming"
+    },
+    "blog": {
+        "title": "Coming soon... a blog",
+        "description": "This is a blog about web development and programming"
+    },
+    "about": {
+        "title": "Coming soon... more about me",
+        "description": "This is a blog about web development and programming"
+    }
+}

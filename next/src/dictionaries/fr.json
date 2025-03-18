@@ -1,0 +1,23 @@
+{
+    "section": {
+        "home": "Accueil",
+        "about_me": "A propos de moi",
+        "contact": "Blog"
+    },
+    "footer": {
+        "follow_me": "Me suivre",
+        "all_rights_reserved": "Tous droits réservés"
+    },
+    "home": {
+        "title": "Bienvenue sur mon site !",
+        "description": "This is a blog about web development and programming"
+    },
+    "blog": {
+        "title": "Bientôt... un blog",
+        "description": "This is a blog about web development and programming"
+    },
+    "about": {
+        "title": "Bientôt... plus d'infos sur moi",
+        "description": "This is a blog about web development and programming"
+    }
+}
