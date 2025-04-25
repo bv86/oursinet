@@ -1,6 +1,6 @@
-"use client";
-import { FC } from "react";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+'use client';
+import { FC } from 'react';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 
 // Props interface for the main pagination component
 interface PaginationProps {
@@ -9,7 +9,7 @@ interface PaginationProps {
 
 // Props interface for the arrow buttons
 interface PaginationArrowProps {
-  direction: "left" | "right"; // Direction of the arrow
+  direction: 'left' | 'right'; // Direction of the arrow
   href: string; // URL to navigate to
   isDisabled: boolean; // Whether the arrow should be disabled
 }
@@ -21,7 +21,7 @@ const PaginationArrow: FC<PaginationArrowProps> = ({
   isDisabled,
 }) => {
   const router = useRouter();
-  const isLeft = direction === "left";
+  const isLeft = direction === 'left';
 
   return (
     <button
@@ -30,11 +30,11 @@ const PaginationArrow: FC<PaginationArrowProps> = ({
         // Use Next.js client-side navigation without scroll reset
         router.push(href, { scroll: false });
       }}
-      className={`pagination-arrow ${isDisabled ? "disabled" : ""}`}
+      className={`pagination-arrow ${isDisabled ? 'disabled' : ''}`}
       aria-disabled={isDisabled}
       disabled={isDisabled}
     >
-      {isLeft ? "«" : "»"}
+      {isLeft ? '«' : '»'}
     </button>
   );
 };
@@ -44,12 +44,12 @@ export function PaginationComponent({ pageCount }: Readonly<PaginationProps>) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   // Extract current page from URL params, defaulting to 1 if not present
-  const currentPage = Number(searchParams.get("page")) || 1;
+  const currentPage = Number(searchParams.get('page')) || 1;
 
   // Helper function to create URLs for pagination
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
-    params.set("page", pageNumber.toString());
+    params.set('page', pageNumber.toString());
     return `${pathname}?${params.toString()}`; // Combines current path with updated page parameter
   };
 

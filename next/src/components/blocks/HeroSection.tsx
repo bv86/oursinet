@@ -1,14 +1,14 @@
-import { HeroSectionProps } from "@/lib/types";
-import Link from "next/link";
-import { StrapiImage } from "../ui/StrapiImage";
-import { Button } from "../ui/button";
+import { HeroSectionProps } from '@/lib/types';
+import Link from 'next/link';
+import { StrapiImage } from '../ui/StrapiImage';
+import { Button } from '../ui/button';
 
 export function HeroSection({ title, cta, image }: Readonly<HeroSectionProps>) {
   return (
     <section className="relative md:min-h-[500px]">
       <StrapiImage
         src={image.url}
-        alt={image.alternativeText || "No alternative text provided"}
+        alt={image.alternativeText || 'No alternative text provided'}
         className="absolute top-0 left-0 -z-1 w-full h-full object-cover object-center rounded-b-3xl"
         width={1920}
         height={1080}
@@ -21,7 +21,7 @@ export function HeroSection({ title, cta, image }: Readonly<HeroSectionProps>) {
         </div>
         {cta && (
           <Button>
-            <Link href={cta.href} target={cta.isExternal ? "_blank" : "_self"}>
+            <Link href={cta.href} target={cta.isExternal ? '_blank' : '_self'}>
               {cta.text}
             </Link>
           </Button>

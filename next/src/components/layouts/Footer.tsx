@@ -1,5 +1,5 @@
-import { LinkProps } from "@/lib/types";
-import Link from "next/link";
+import { LinkProps } from '@/lib/types';
+import Link from 'next/link';
 
 interface FooterProps {
   data: {
@@ -22,7 +22,7 @@ const Footer = async ({ data }: FooterProps) => {
               href={item.href}
               key={item.id}
               className="hover:underline"
-              target={item.isExternal ? "_blank" : "_self"}
+              target={item.isExternal ? '_blank' : '_self'}
             >
               <h5>{item.text}</h5>
             </Link>

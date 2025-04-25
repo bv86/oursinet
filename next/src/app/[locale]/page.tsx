@@ -1,8 +1,8 @@
-import { BlockRenderer } from "@/components/BlockRenderer";
-import { Locale } from "@/config";
-import { getHomePage } from "@/lib/data/loaders";
-import { LocalizedPage } from "@/lib/types";
-import { notFound } from "next/navigation";
+import { BlockRenderer } from '@/components/BlockRenderer';
+import { Locale } from '@/config';
+import { getHomePage } from '@/lib/data/loaders';
+import { LocalizedPage } from '@/lib/types';
+import { notFound } from 'next/navigation';
 
 async function loader(locale: Locale) {
   const data = await getHomePage(locale);

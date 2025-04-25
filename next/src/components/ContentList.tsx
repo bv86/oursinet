@@ -1,7 +1,7 @@
-import { ArticleProps } from "@/lib/types";
-import { Search } from "@/components/Search";
-import { getContent } from "@/lib/data/loaders";
-import { PaginationComponent } from "./PaginationComponent";
+import { ArticleProps } from '@/lib/types';
+import { Search } from '@/components/Search';
+import { getContent } from '@/lib/data/loaders';
+import { PaginationComponent } from './PaginationComponent';
 
 interface ContentListProps {
   query?: string;

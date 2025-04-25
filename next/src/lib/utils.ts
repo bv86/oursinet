@@ -1,21 +1,32 @@
-import { S3_BASE_URL } from "@/config";
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { S3_BASE_URL } from '@/config';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 // Type definition
-export type ValueElseUndefined<T> =
-  T extends (string | number | boolean | symbol | object) ? T : undefined;
+export type ValueElseUndefined<T> = T extends
+  | string
+  | number
+  | boolean
+  | symbol
+  | object
+  ? T
+  : undefined;
 
-export function getEnvString<T>(key: string, defaultValue?: T): string | ValueElseUndefined<T> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function getEnvString<T>(
+  key: string,
+  defaultValue?: T
+): string | ValueElseUndefined<T> {
   return process.env[key] || (defaultValue as any);
 }
 
-export function getEnvBool(key: string, defaultValue: boolean = false): boolean {
+export function getEnvBool(
+  key: string,
+  defaultValue: boolean = false
+): boolean {
   const value = process.env[key];
   if (value === undefined) {
     return defaultValue;

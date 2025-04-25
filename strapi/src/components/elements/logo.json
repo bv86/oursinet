@@ -9,10 +9,7 @@
       "type": "string"
     },
     "image": {
-      "allowedTypes": [
-        "images",
-        "files"
-      ],
+      "allowedTypes": ["images", "files"],
       "type": "media",
       "multiple": false
     }

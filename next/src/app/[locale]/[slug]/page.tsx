@@ -1,8 +1,8 @@
-import { notFound } from "next/navigation";
-import { BlockRenderer } from "@/components/BlockRenderer";
-import { type Locale } from "@/config";
-import type { LocalizedStrapiPage } from "@/lib/types";
-import { getPageBySlug } from "@/lib/data/loaders";
+import { notFound } from 'next/navigation';
+import { BlockRenderer } from '@/components/BlockRenderer';
+import { type Locale } from '@/config';
+import type { LocalizedStrapiPage } from '@/lib/types';
+import { getPageBySlug } from '@/lib/data/loaders';
 
 async function loader({ slug, locale }: { slug: string; locale: Locale }) {
   const { data } = await getPageBySlug(slug, locale);

@@ -1,16 +1,16 @@
-import { notFound } from "next/navigation";
+import { notFound } from 'next/navigation';
 
-import { BlockRenderer } from "@/components/BlockRenderer";
-import { HeroSection } from "@/components/blocks/HeroSection";
-import { getContentBySlug } from "@/lib/data/loaders";
-import { ArticleProps } from "@/lib/types";
+import { BlockRenderer } from '@/components/BlockRenderer';
+import { HeroSection } from '@/components/blocks/HeroSection';
+import { getContentBySlug } from '@/lib/data/loaders';
+import { ArticleProps } from '@/lib/types';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 async function loader(slug: string) {
-  const { data } = await getContentBySlug(slug, "/api/articles");
+  const { data } = await getContentBySlug(slug, '/api/articles');
   const article = data[0];
   if (!article) throw notFound();
   return { article: article as ArticleProps, blocks: article?.blocks };

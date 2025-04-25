@@ -1,9 +1,10 @@
 {
-  "name": "my-strapi",
+  "name": "strapi",
   "version": "0.1.0",
   "private": true,
   "description": "A Strapi application",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "strapi build",
     "console": "strapi console",
     "deploy": "strapi deploy",
@@ -12,7 +13,11 @@
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write ."
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.11.0",
@@ -22,14 +27,20 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
+    "sharp": "^0.34.1",
     "strapi-provider-upload-do": "^3.6.9",
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.25.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "typescript": "^5"
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "prettier": "^3.5.3",
+    "typescript": "^5",
+    "typescript-eslint": "^8.31.0"
   },
   "engines": {
     "node": ">=18.0.0 <=22.x.x",

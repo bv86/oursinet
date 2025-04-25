@@ -1,5 +1,5 @@
-import { type Locale } from "@/config";
-import { type NextPage } from "next/types";
+import { type Locale } from '@/config';
+import { type NextPage } from 'next/types';
 
 export type LocalizedPage<T = object> = NextPage<{
   params: Promise<{ locale: Locale }>;
@@ -41,16 +41,16 @@ export interface ArticleProps {
 }
 
 type ComponentType =
-  | "blocks.hero-section"
-  | "blocks.info-block"
-  | "blocks.heading"
-  | "blocks.paragraph-with-image"
-  | "blocks.paragraph"
-  | "blocks.full-image";
+  | 'blocks.hero-section'
+  | 'blocks.info-block'
+  | 'blocks.heading'
+  | 'blocks.paragraph-with-image'
+  | 'blocks.paragraph'
+  | 'blocks.full-image';
 
 interface Base<
   T extends ComponentType,
-  D extends object = Record<string, unknown>
+  D extends object = Record<string, unknown>,
 > {
   id: number;
   __component?: T;
@@ -69,13 +69,13 @@ export type Block =
   | ParagraphProps
   | FullImageProps;
 
-export interface HeroSectionProps extends Base<"blocks.hero-section"> {
+export interface HeroSectionProps extends Base<'blocks.hero-section'> {
   title: string;
   image: ImageProps;
   cta?: LinkProps;
 }
 
-export interface InfoBlockProps extends Base<"blocks.info-block"> {
+export interface InfoBlockProps extends Base<'blocks.info-block'> {
   reversed?: boolean;
   title: string;
   content: string;
@@ -83,24 +83,24 @@ export interface InfoBlockProps extends Base<"blocks.info-block"> {
   cta?: LinkProps;
 }
 
-export interface HeadingProps extends Base<"blocks.heading"> {
+export interface HeadingProps extends Base<'blocks.heading'> {
   heading: string;
   linkId?: string;
 }
 
 export interface ParagraphWithImageProps
-  extends Base<"blocks.paragraph-with-image"> {
+  extends Base<'blocks.paragraph-with-image'> {
   content: string;
   image: ImageProps;
   reversed?: boolean;
 }
 
-export interface ParagraphProps extends Base<"blocks.paragraph"> {
+export interface ParagraphProps extends Base<'blocks.paragraph'> {
   content: string;
 }
 
-export interface FullImageProps extends Base<"blocks.full-image"> {
+export interface FullImageProps extends Base<'blocks.full-image'> {
   id: number;
-  __component: "blocks.full-image";
+  __component: 'blocks.full-image';
   image: ImageProps;
 }

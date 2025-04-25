@@ -18,10 +18,7 @@
   "attributes": {
     "blocks": {
       "type": "dynamiczone",
-      "components": [
-        "blocks.info-block",
-        "blocks.hero-section"
-      ],
+      "components": ["blocks.info-block", "blocks.hero-section"],
       "pluginOptions": {
         "i18n": {
           "localized": true

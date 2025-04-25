@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { LinkProps, LogoProps } from "@/lib/types";
-import { StrapiImage } from "../ui/StrapiImage";
+import Link from 'next/link';
+import { LinkProps, LogoProps } from '@/lib/types';
+import { StrapiImage } from '../ui/StrapiImage';
 
 interface HeaderProps {
   data: {
@@ -20,7 +20,7 @@ const Header = async ({ data }: HeaderProps) => {
         <Link href="/">
           <StrapiImage
             src={logo.image.url}
-            alt={logo.image.alternativeText || "No alternative text provided"}
+            alt={logo.image.alternativeText || 'No alternative text provided'}
             width={40}
             height={40}
           />
@@ -34,7 +34,7 @@ const Header = async ({ data }: HeaderProps) => {
             href={item.href}
             key={item.id}
             className="hover:underline"
-            target={item.isExternal ? "_blank" : "_self"}
+            target={item.isExternal ? '_blank' : '_self'}
           >
             <h5>{item.text}</h5>
           </Link>

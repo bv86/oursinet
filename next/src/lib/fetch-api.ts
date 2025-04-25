@@ -1,4 +1,4 @@
-import { Locale } from "@/config";
+import { Locale } from '@/config';
 
 type NextFetchRequestConfig = {
   revalidate?: number | false;
@@ -6,7 +6,7 @@ type NextFetchRequestConfig = {
 };
 
 interface FetchAPIOptions {
-  method: "GET" | "POST" | "PUT" | "DELETE";
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
   authToken?: string;
   body?: Record<string, unknown>;
   next?: NextFetchRequestConfig;
@@ -19,9 +19,9 @@ export async function fetchAPI(url: string, options: FetchAPIOptions) {
   const headers: RequestInit & { next?: NextFetchRequestConfig } = {
     method,
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       ...(authToken && { Authorization: `Bearer ${authToken}` }),
-      ...(locale && { "Accept-Language": locale }),
+      ...(locale && { 'Accept-Language': locale }),
     },
     ...(body && { body: JSON.stringify(body) }),
     ...(next && { next }),
@@ -29,10 +29,10 @@ export async function fetchAPI(url: string, options: FetchAPIOptions) {
 
   try {
     const response = await fetch(url, headers);
-    const contentType = response.headers.get("content-type");
+    const contentType = response.headers.get('content-type');
     if (
       contentType &&
-      contentType.includes("application/json") &&
+      contentType.includes('application/json') &&
       response.ok
     ) {
       return await response.json();

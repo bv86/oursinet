@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { Card, CardContent } from "./ui/card";
-import { StrapiImage } from "./ui/StrapiImage";
-import { ImageProps } from "@/lib/types";
+import Link from 'next/link';
+import { Card, CardContent } from './ui/card';
+import { StrapiImage } from './ui/StrapiImage';
+import { ImageProps } from '@/lib/types';
 
 export interface ContentCardProps {
   documentId: string;
@@ -26,7 +26,7 @@ export function ContentCard({
         <CardContent>
           <StrapiImage
             src={image.url}
-            alt={image.alternativeText || "No alternative text provided"}
+            alt={image.alternativeText || 'No alternative text provided'}
             width={200}
             height={200}
             className="rounded-2xl"

@@ -1,21 +1,21 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Footer from "@/components/layouts/Footer";
-import { type Locale } from "@/config";
-import { getGlobalSettings } from "@/lib/data/loaders";
-import Header from "@/components/layouts/Header";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import Footer from '@/components/layouts/Footer';
+import { type Locale } from '@/config';
+import { getGlobalSettings } from '@/lib/data/loaders';
+import Header from '@/components/layouts/Header';
 
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
 export const metadata: Metadata = {
-  title: "Oursi.net",
-  description: "Personal website of Benoit Vannesson",
+  title: 'Oursi.net',
+  description: 'Personal website of Benoit Vannesson',
 };
 
 async function loader(locale: Locale) {
   const { data } = await getGlobalSettings(locale);
-  if (!data) throw new Error("Failed to fetch global settings");
+  if (!data) throw new Error('Failed to fetch global settings');
   return { header: data?.header, footer: data?.footer };
 }
 

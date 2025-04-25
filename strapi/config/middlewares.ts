@@ -8,8 +8,18 @@ export default [
         useDefaults: true,
         directives: {
           'connect-src': ["'self'", 'https:'],
-          'img-src': ["'self'", 'data:', 'blob:', `https://${process.env.DO_SPACE_CDN}`],
-          'media-src': ["'self'", 'data:', 'blob:', `https://${process.env.DO_SPACE_CDN}`],
+          'img-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            `https://${process.env.DO_SPACE_CDN}`,
+          ],
+          'media-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            `https://${process.env.DO_SPACE_CDN}`,
+          ],
           upgradeInsecureRequests: null,
         },
       },
