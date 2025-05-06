@@ -20,6 +20,7 @@ export function getEnvString<T>(
   key: string,
   defaultValue?: T
 ): string | ValueElseUndefined<T> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return process.env[key] || (defaultValue as any);
 }
 

@@ -147,6 +147,7 @@ PGPASSWORD="strapi" pg_restore \
   -U strapi_owner_user \
   -d strapi \
   -c \
+  -O \
   --if-exists \
   "$DUMP_FILE"
 

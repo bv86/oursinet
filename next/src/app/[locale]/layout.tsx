@@ -34,7 +34,9 @@ export default async function RootLayout(
       <body className={`${inter.className} antialiased h-screen`}>
         <div className="flex flex-col overflow-x-clip h-full items-center">
           <Header data={header} />
-          <main className="container flex flex-grow flex-col">{children}</main>
+          <main className="container max-w-5xl flex flex-grow flex-col">
+            {children}
+          </main>
           <Footer data={footer} />
         </div>
       </body>

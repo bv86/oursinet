@@ -10,10 +10,10 @@
 }
 
 :root {
-  --background: #fbfaf1;
-  --foreground: #431e39;
+  --background: #aa9e8f;
+  --foreground: #361d00;
   --card: #ffffff66;
-  --card-foreground: #431e39;
+  --card-foreground: #361d00;
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: #ed5f40;
