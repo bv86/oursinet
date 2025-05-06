@@ -1,0 +1,57 @@
+services:
+  # PostgreSQL service for local development
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: strapi_owner_user
+      POSTGRES_PASSWORD: strapi
+      POSTGRES_DB: strapi
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: strapi
+    ports:
+      - "1337:1337"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=strapi
+      - DATABASE_USERNAME=strapi_owner_user
+      - DATABASE_PASSWORD=strapi
+    env_file:
+      - strapi/.env
+    volumes:
+      - strapi_data:/prod/strapi/public/uploads
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  next:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: next
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - STRAPI_BASE_URL=http://strapi:1337
+    depends_on:
+      - strapi
+    restart: unless-stopped
+
+volumes:
+  strapi_data:
+  postgres_data:
+
+networks:
+  default:
+    name: oursinet-network

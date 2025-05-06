@@ -2,7 +2,8 @@ packages:
   - next
   - strapi
 onlyBuiltDependencies:
-  - '@swc/core'
+  - "@swc/core"
   - core-js-pure
   - esbuild
   - sharp
+dangerouslyAllowAllBuilds: true

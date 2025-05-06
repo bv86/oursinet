@@ -170,3 +170,5 @@ dist
 build
 .strapi-updater.json
 .strapi-cloud.json
+
+utils/db_dumps
