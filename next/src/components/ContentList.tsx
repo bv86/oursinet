@@ -32,7 +32,7 @@ export async function ContentList({
   const Component = component;
 
   return (
-    <section className="flex flex-col gap-8 items-center">
+    <section className="flex flex-col gap-8 items-center px-4 lg:px-0">
       {showSearch && <Search />}
       <div className="w-full flex flex-col gap-4">
         {articles.map((article) => (

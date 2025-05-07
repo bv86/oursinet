@@ -3,7 +3,7 @@ import { StrapiImage } from '../ui/StrapiImage';
 
 export function FullImage({ image }: Readonly<FullImageProps>) {
   return (
-    <div className="">
+    <div className="px-4 lg:px-0">
       <StrapiImage
         src={image.url}
         alt={image.alternativeText || 'No alternative text provided'}

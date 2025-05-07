@@ -13,10 +13,8 @@ export function InfoBlock({
 }: Readonly<InfoBlockProps>) {
   return (
     <section
-      className={`flex gap-8 w-full flex-col pl-2 pr-2 ${
-        reversed
-          ? 'md:flex-row-reverse md:pl-4 md:pr-0'
-          : 'md:flex-row md:pr-4 md:pl-0'
+      className={`flex gap-8 w-full flex-col px-4 lg:px-0 ${
+        reversed ? 'md:flex-row-reverse' : 'md:flex-row'
       }`}
     >
       {image && (
