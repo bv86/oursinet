@@ -4,12 +4,14 @@ ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
 FROM base AS build
-COPY . /usr/src/app
 WORKDIR /usr/src/app
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm fetch
+COPY . .
+RUN pnpm install --frozen-lockfile
 RUN pnpm run -r build
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm deploy --filter=cms --legacy --prod /prod/strapi
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm deploy --filter=frontend --legacy --prod /prod/next
+RUN pnpm deploy --filter=cms --legacy --prod /prod/strapi
+RUN pnpm deploy --filter=frontend --legacy --prod /prod/next
 
 FROM base AS strapi
 COPY --from=build /prod/strapi /prod/strapi
