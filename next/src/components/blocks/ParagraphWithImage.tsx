@@ -1,6 +1,6 @@
 import { ParagraphWithImageProps } from '@/lib/types';
-import ReactMarkdown from 'react-markdown';
 import { StrapiImage } from '../ui/StrapiImage';
+import { MarkdownRenderer } from '../ui/MarkdownRenderer';
 
 export function ParagraphWithImage({
   content,
@@ -37,7 +37,7 @@ export function ParagraphWithImage({
               } mt-1 md:hidden max-w-1/3 md:rounded-r-3xl md:object-cover rounded-sm`}
             />
           )}
-          <ReactMarkdown>{content}</ReactMarkdown>
+          <MarkdownRenderer content={content} />
         </div>
       </div>
     </div>

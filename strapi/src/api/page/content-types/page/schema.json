@@ -24,7 +24,13 @@
     },
     "blocks": {
       "type": "dynamiczone",
-      "components": ["blocks.info-block", "blocks.hero-section"]
+      "components": [
+        "blocks.info-block",
+        "blocks.hero-section",
+        "blocks.paragraph",
+        "blocks.paragraph-with-image",
+        "blocks.full-image"
+      ]
     },
     "slug": {
       "type": "uid",

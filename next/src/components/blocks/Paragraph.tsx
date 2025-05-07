@@ -1,11 +1,10 @@
 import { ParagraphProps } from '@/lib/types';
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
+import { MarkdownRenderer } from '../ui/MarkdownRenderer';
 
 export function Paragraph({ content }: Readonly<ParagraphProps>) {
   return (
     <div className="">
-      <ReactMarkdown>{content}</ReactMarkdown>
+      <MarkdownRenderer content={content} />
     </div>
   );
 }

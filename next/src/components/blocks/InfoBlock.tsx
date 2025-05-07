@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
 import { StrapiImage } from '../ui/StrapiImage';
 import { InfoBlockProps } from '@/lib/types';
 import { Button } from '../ui/button';
+import { MarkdownRenderer } from '../ui/MarkdownRenderer';
 
 export function InfoBlock({
   reversed,
@@ -42,7 +42,7 @@ export function InfoBlock({
               } mt-1 md:hidden max-w-1/3 md:rounded-r-3xl md:object-cover rounded-sm`}
             />
           )}
-          <ReactMarkdown>{content}</ReactMarkdown>
+          <MarkdownRenderer content={content} />
           {cta && (
             <Button className="mt-4">
               <Link

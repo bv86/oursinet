@@ -67,6 +67,26 @@ const pageBySlugQuery = (slug: string) =>
               cta: true,
             },
           },
+          'blocks.heading': {
+            populate: true,
+          },
+          'blocks.paragraph-with-image': {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+          'blocks.paragraph': {
+            populate: true,
+          },
+          'blocks.full-image': {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
         },
       },
     },
