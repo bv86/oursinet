@@ -1,6 +1,6 @@
 # 🐻 Oursi.net
 
-This repository contains the code for the oursi.net website, a modern web application built with Next.js and Strapi CMS.
+This repository contains the code for the oursi.net website (my personal website), a modern web application built with Next.js and Strapi CMS.
 
 ## 🚀 Project Overview
 
@@ -77,23 +77,15 @@ The backend uses Strapi CMS with:
    docker-compose up postgres -d
    ```
 
-5. **Start Strapi development server**
+5. **Start both development servers**
 
    ```bash
-   cd strapi
-   pnpm dev
+   pnpm -r dev
    ```
 
-6. **Start Next.js development server** (in a new terminal)
-
-   ```bash
-   cd next
-   pnpm dev
-   ```
-
-7. **Access your applications:**
-   - Frontend: http://localhost:3000
-   - Strapi Admin: http://localhost:1337/admin
+6. **Access your applications:**
+   - Frontend: <http://localhost:3000>
+   - Strapi Admin: <http://localhost:1337/admin>
 
 ### Option 2: Docker Compose (Full Stack)
 
@@ -119,8 +111,8 @@ For testing the entire application in a production-like environment:
    ```
 
 4. **Access your containerized applications:**
-   - Frontend: http://localhost:3000
-   - Strapi Admin: http://localhost:1337/admin
+   - Frontend: <http://localhost:3000>
+   - Strapi Admin: <http://localhost:1337/admin>
 
 ## 🧰 Useful Commands
 
@@ -178,14 +170,6 @@ pnpm start
 # Sync database with latest dump
 ./utils/sync-db.sh
 ```
-
-## 🤝 Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
-## 📄 License
-
-This project is licensed under the ISC License - see the LICENSE file for details.
 
 ## ✨ Author
 
