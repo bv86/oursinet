@@ -1,61 +1,137 @@
-# 🚀 Getting started with Strapi
+# 🗄️ Oursi.net CMS (Strapi)
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+This directory contains the Strapi CMS backend for the Oursi.net project.
 
-### `develop`
+## ✨ Features
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+- 📊 PostgreSQL database integration
+- 🔒 User authentication and permissions system
+- 📝 Content types for articles, pages, and global components
+- 🧩 Reusable component system for content blocks
+- 🖼️ Media library for managing images and files
+- 🌐 Multi-language content support
 
-```
-npm run develop
-# or
-yarn develop
-```
-
-### `start`
-
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+## 📁 Structure
 
 ```
-npm run start
-# or
-yarn start
+strapi/
+├── config/         # Configuration files
+├── database/       # Database migrations
+├── public/         # Public assets and uploaded files
+└── src/
+    ├── admin/      # Admin customizations
+    ├── api/        # Content types and API endpoints
+    │   ├── article/
+    │   ├── global/
+    │   ├── home-page/
+    │   └── page/
+    ├── components/ # Reusable content components
+    │   ├── blocks/
+    │   ├── elements/
+    │   └── layouts/
+    └── extensions/  # Plugin extensions
 ```
 
-### `build`
+## 🛠️ Development
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+### Prerequisites
 
+- Node.js (v18 or newer)
+- PNPM (v10.5.2 or newer)
+- PostgreSQL database (local or containerized)
+
+### Getting Started
+
+1. **Set up environment variables**
+
+   Create a `.env` file in the strapi directory with the following variables:
+
+   ```
+   HOST=0.0.0.0
+   PORT=1337
+   APP_KEYS=your-app-keys
+   API_TOKEN_SALT=your-token-salt
+   ADMIN_JWT_SECRET=your-admin-jwt-secret
+   TRANSFER_TOKEN_SALT=your-transfer-token-salt
+   JWT_SECRET=your-jwt-secret
+
+   # Database
+   DATABASE_CLIENT=postgres
+   DATABASE_HOST=localhost
+   DATABASE_PORT=5432
+   DATABASE_NAME=strapi
+   DATABASE_USERNAME=strapi_owner_user
+   DATABASE_PASSWORD=strapi
+   DATABASE_SSL=false
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   pnpm install
+   ```
+
+3. **Start the development server**
+
+   ```bash
+   pnpm dev
+   ```
+
+4. **Build for production**
+
+   ```bash
+   pnpm build
+
+   ```
+
+5. **Start the production server**
+
+   ```bash
+   pnpm start
+   ```
+
+## 📝 Content Structure
+
+### Content Types
+
+- **Articles**: Blog posts and news articles
+- **Pages**: Generic content pages
+- **Home Page**: Specific configuration for the home page
+- **Global**: Site-wide settings and components
+
+### Component System
+
+The CMS uses a component-based content structure with:
+
+- **Blocks**: Major content sections like hero sections, info blocks
+- **Elements**: Smaller reusable elements like buttons and cards
+- **Layouts**: Layout components for structuring content
+
+## 🔄 Database Management
+
+### Migrations
+
+Database migrations are stored in the `database/migrations/` directory.
+
+### Backup and Restore
+
+Use the utility scripts in the `utils/` directory at the project root:
+
+```bash
+# Backup database
+cd ..
+./utils/sync-db.sh backup
+
+# Restore database
+./utils/sync-db.sh restore latest
 ```
-npm run build
-# or
-yarn build
-```
 
-## ⚙️ Deployment
+## 🧰 Admin Panel
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+The Strapi Admin panel can be accessed at `http://localhost:1337/admin`. Create your first admin user when starting Strapi for the first time.
 
-```
-yarn strapi deploy
-```
+## 🔌 API Documentation
 
-## 📚 Learn more
+Once Strapi is running, API documentation is available at:
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+- REST API: `http://localhost:1337/documentation`
