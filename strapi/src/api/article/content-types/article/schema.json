@@ -30,9 +30,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "blocks": {
       "type": "dynamiczone",
@@ -51,9 +49,7 @@
       "target": "api::tag.tag"
     },
     "logo": {
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "type": "media",
       "multiple": false
     }

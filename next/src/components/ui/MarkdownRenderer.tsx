@@ -35,9 +35,24 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             {...props}
           />
         ),
-        code: ({ className, children }) => {
-          const match = /language-(\w+)/.exec(className || '');
+        code: ({ className, children, ...props }) => {
+          // Check if this code is inline by examining the parent node type
+          const isInline = !className;
 
+          // If it's inline code, render with inline styling
+          if (isInline) {
+            return (
+              <code
+                className="bg-inline-code text-inline-code-foreground p-1 rounded text-sm font-mono"
+                {...props}
+              >
+                {children}
+              </code>
+            );
+          }
+
+          // Otherwise, it's a code block, use the CodeBlock component
+          const match = /language-(\w+)/.exec(className || '');
           const language = match ? match[1] : 'ascii';
           const value = String(children).replace(/\n$/, '');
 

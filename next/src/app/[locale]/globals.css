@@ -43,6 +43,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --inline-code: #1d1d1d;
+  --inline-code-foreground: #ba836c;
 }
 
 @theme inline {
@@ -82,6 +84,8 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-inline-code: var(--inline-code);
+  --color-inline-code-foreground: var(--inline-code-foreground);
 }
 
 @layer base {
