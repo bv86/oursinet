@@ -17,7 +17,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
           <h2 className="text-2xl font-semibold my-6" {...props} />
         ),
         h3: ({ ...props }) => (
-          <h3 className="text-xl font-medium my-2" {...props} />
+          <h3 className="text-xl font-medium my-4" {...props} />
         ),
         h4: ({ ...props }) => (
           <h4 className="text-lg font-medium my-2" {...props} />
@@ -27,6 +27,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
         ol: ({ ...props }) => (
           <ol className="list-decimal pl-6 my-2" {...props} />
         ),
+        hr: ({ ...props }) => <hr className="mt-8" {...props} />,
         li: ({ ...props }) => <li className="my-1" {...props} />,
         a: ({ ...props }) => <a className="font-bold underline" {...props} />,
         blockquote: ({ ...props }) => (
