@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import CodeBlock from './CodeBlock';
 
 interface MarkdownRendererProps {
   content: string;
@@ -34,9 +35,14 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             {...props}
           />
         ),
-        code: ({ ...props }) => (
-          <code className="bg-gray-100 px-1 py-0.5 rounded" {...props} />
-        ),
+        code: ({ className, children }) => {
+          const match = /language-(\w+)/.exec(className || '');
+
+          const language = match ? match[1] : 'ascii';
+          const value = String(children).replace(/\n$/, '');
+
+          return <CodeBlock language={language} value={value} />;
+        },
       }}
     >
       {content}

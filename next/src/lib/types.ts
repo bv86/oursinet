@@ -35,6 +35,7 @@ export interface ArticleProps {
   description: string;
   slug: string;
   image: ImageProps;
+  logo: ImageProps;
   publishedAt: string;
   createdAt: string;
   updatedAt: string;

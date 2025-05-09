@@ -51,3 +51,22 @@ export function getFromS3(path: string) {
 export function getAsset(name: string) {
   return getFromS3(`/assets/${name}`);
 }
+
+/**
+ * Formats a date according to the browser's locale settings
+ * @param dateString - ISO date string or Date object
+ * @param options - Intl.DateTimeFormatOptions
+ * @returns Formatted date string
+ */
+export function formatDate(
+  dateString: string | Date,
+  options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }
+): string {
+  const date =
+    typeof dateString === 'string' ? new Date(dateString) : dateString;
+  return date.toLocaleDateString(undefined, options);
+}

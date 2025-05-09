@@ -149,7 +149,7 @@ export async function getContent(path: string, query?: string, page?: string) {
       page: parseInt(page || '1'),
     },
     populate: {
-      image: {
+      logo: {
         fields: ['url', 'alternativeText'],
       },
     },
