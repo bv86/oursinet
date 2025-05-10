@@ -25,20 +25,20 @@ export function ContentCard({
 }: Readonly<ContentCardProps>) {
   return (
     <Link href={`/${basePath}/${slug}`}>
-      <Card className="flex flex-row w-full gap-0 h-[200px]">
+      <Card className="flex flex-row w-full gap-0 h-[150px] md:h-[200px]">
         {logo && (
-          <CardContent>
+          <CardContent className="pr-2 md:pr-4">
             <StrapiImage
               src={logo.url}
               alt={logo.alternativeText || 'No alternative text provided'}
               width={160}
               height={160}
-              className="rounded-2xl h-full object-cover"
+              className="rounded-2xl h-full w-auto object-cover aspect-square"
             />
           </CardContent>
         )}
-        <CardContent className="flex flex-col gap-2 w-0 flex-grow overflow-hidden">
-          <h2 className="font-bold text-2xl">{title}</h2>
+        <CardContent className="flex flex-col md:gap-2 w-0 flex-grow overflow-hidden pl-2 md:pl-4">
+          <h2 className="font-bold text-md md:text-2xl">{title}</h2>
           <div className="line-clamp-4 overflow-hidden text-ellipsis h-0 flex-grow">
             {description}
           </div>
