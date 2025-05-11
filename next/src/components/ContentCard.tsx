@@ -25,9 +25,9 @@ export function ContentCard({
 }: Readonly<ContentCardProps>) {
   return (
     <Link href={`/${basePath}/${slug}`}>
-      <Card className="flex flex-row w-full gap-0 h-[150px] md:h-[200px]">
+      <Card className="flex flex-row w-full p-2 md:p-4 gap-2 md:gap-4 h-[150px] md:h-[200px] overflow-hidden">
         {logo && (
-          <CardContent className="pr-2 md:pr-4">
+          <CardContent className="h-full aspect-square p-0">
             <StrapiImage
               src={logo.url}
               alt={logo.alternativeText || 'No alternative text provided'}
@@ -37,10 +37,14 @@ export function ContentCard({
             />
           </CardContent>
         )}
-        <CardContent className="flex flex-col md:gap-2 w-0 flex-grow overflow-hidden pl-2 md:pl-4">
-          <h2 className="font-bold text-md md:text-2xl">{title}</h2>
-          <div className="line-clamp-4 overflow-hidden text-ellipsis h-0 flex-grow">
-            {description}
+        <CardContent className="flex flex-col gap-0 md:gap-2 w-0 flex-grow h-full overflow-hidden p-0">
+          <h2 className="font-bold text-md md:text-2xl line-clamp-2 text-ellipsis">
+            {title}
+          </h2>
+          <div className="w-full h-0 flex-grow overflow-hidden line-clamp-2 wrap-break-word">
+            <p className="text-sm md:text-lg display-inline text-ellipsis line-clamp-2">
+              {description}
+            </p>
           </div>
           <div className="text-sm text-muted-foreground text-right">
             {formatDate(createdAt)}
