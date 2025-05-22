@@ -11,6 +11,7 @@ This is the frontend part of the Oursi.net project, built with Next.js 15, TypeS
 - 🔍 Search functionality with debouncing
 - 📊 Pagination for content lists
 - 📝 Markdown rendering for rich text content
+- 📈 Page-level traffic analytics with Google Analytics 4
 
 ## 📁 Structure
 
@@ -26,7 +27,9 @@ next/
 │   │   ├── layouts/ # Layout components
 │   │   └── ui/     # Base UI components
 │   ├── dictionaries/ # Translation files
+│   ├── hooks/      # Custom React hooks
 │   └── lib/        # Utility functions and API helpers
+      └── analytics.ts # Analytics configuration
 ```
 
 ## 🛠️ Development

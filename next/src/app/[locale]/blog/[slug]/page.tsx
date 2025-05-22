@@ -4,6 +4,7 @@ import { BlockRenderer } from '@/components/BlockRenderer';
 import { HeroSection } from '@/components/blocks/HeroSection';
 import { getContentBySlug } from '@/lib/data/loaders';
 import { ArticleProps } from '@/lib/types';
+import { PageAnalytics } from '@/components/PageAnalytics';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -23,6 +24,9 @@ export default async function SingleBlogRoute({ params }: PageProps) {
 
   return (
     <div className="flex flex-col gap-8">
+      {/* Add analytics tracking for this specific blog post */}
+      <PageAnalytics contentId={slug} contentType="blog" />
+
       <HeroSection id={article.id} title={title} image={image} />
 
       <div className="flex flex-col gap-4">

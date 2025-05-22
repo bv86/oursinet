@@ -1,6 +1,7 @@
 'use client';
 import { FC } from 'react';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
+import { trackEvent } from '@/lib/analytics';
 
 // Props interface for the main pagination component
 interface PaginationProps {
@@ -27,6 +28,12 @@ const PaginationArrow: FC<PaginationArrowProps> = ({
     <button
       onClick={(e) => {
         e.preventDefault();
+        // Track pagination event
+        trackEvent('pagination', {
+          action: isLeft ? 'previous' : 'next',
+          category: 'navigation',
+          label: href,
+        });
         // Use Next.js client-side navigation without scroll reset
         router.push(href, { scroll: false });
       }}

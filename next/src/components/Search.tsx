@@ -2,6 +2,7 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 import { Input } from './ui/input';
+import { trackEvent } from '@/lib/analytics';
 
 export function Search() {
   // Get access to URL search parameters, routing, and current pathname
@@ -19,6 +20,13 @@ export function Search() {
     // Update URL search parameters based on search term
     if (term) {
       params.set('query', term);
+      // Track search event
+      trackEvent('search', {
+        action: 'search',
+        category: 'user_engagement',
+        label: term,
+        value: term.length,
+      });
     } else {
       params.delete('query');
     }

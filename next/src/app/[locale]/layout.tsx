@@ -5,6 +5,8 @@ import Footer from '@/components/layouts/Footer';
 import { type Locale } from '@/config';
 import { getGlobalSettings } from '@/lib/data/loaders';
 import Header from '@/components/layouts/Header';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { GA_MEASUREMENT_ID } from '@/lib/analytics';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
@@ -39,6 +41,8 @@ export default async function RootLayout(
           </main>
           <Footer data={footer} />
         </div>
+        {/* Google Analytics tag */}
+        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
     </html>
   );

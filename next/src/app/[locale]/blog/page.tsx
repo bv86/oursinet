@@ -1,6 +1,7 @@
 import { BlockRenderer } from '@/components/BlockRenderer';
 import { BlogCard } from '@/components/BlogCard';
 import { ContentList } from '@/components/ContentList';
+import { PageAnalytics } from '@/components/PageAnalytics';
 import { type Locale } from '@/config';
 import { getPageBySlug } from '@/lib/data/loaders';
 import { LocalizedPage } from '@/lib/types';
@@ -30,6 +31,7 @@ const Blog: LocalizedPage<{ page?: string; query?: string }> = async function ({
         showPagination
         page={page}
       />
+      <PageAnalytics contentId="blog" contentType="main" />
     </div>
   );
 };
