@@ -70,7 +70,7 @@ next/
 The frontend connects to the Strapi backend using environment variables. Create a `.env.local` file with:
 
 ```
-NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337
+STRAPI_BASE_URL=http://localhost:1337
 ```
 
 ## 🌐 Internationalization
