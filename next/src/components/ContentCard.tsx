@@ -24,7 +24,7 @@ export function ContentCard({
   createdAt,
 }: Readonly<ContentCardProps>) {
   return (
-    <Link href={`/${basePath}/${slug}`}>
+    <Link href={`${basePath}/${slug}`}>
       <Card className="flex flex-row w-full p-2 md:p-4 gap-2 md:gap-4 h-[150px] md:h-[200px] overflow-hidden">
         {logo && (
           <CardContent className="h-full aspect-square p-0">

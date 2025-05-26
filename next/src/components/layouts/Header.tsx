@@ -3,6 +3,7 @@ import { LinkProps, LogoProps } from '@/lib/types';
 import { StrapiImage } from '../ui/StrapiImage';
 import { LanguageSelector } from '../ui/LanguageSelector';
 import { type Locale } from '@/config';
+import { localizeLink } from '@/lib/utils';
 
 interface HeaderProps {
   data: {
@@ -35,7 +36,7 @@ const Header = async ({ data, locale }: HeaderProps) => {
         {navigation.map((item) => {
           return (
             <Link
-              href={item.href}
+              href={localizeLink(locale, item.href)}
               key={item.id}
               className="hover:underline"
               target={item.isExternal ? '_blank' : '_self'}

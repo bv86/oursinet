@@ -110,7 +110,7 @@ export const LanguageSelector = ({ currentLocale }: LanguageSelectorProps) => {
 
       {isOpen && (
         <div
-          className="absolute top-full right-0 mt-1 bg-sidebar border border-sidebar-border rounded-md shadow-lg z-50 min-w-[150px]"
+          className="absolute top-full right-0 mt-1 bg-sidebar border border-sidebar-border rounded-md shadow-lg z-50 min-w-[150px] overflow-hidden"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="language-selector"
@@ -120,9 +120,7 @@ export const LanguageSelector = ({ currentLocale }: LanguageSelectorProps) => {
               key={locale}
               onClick={() => handleLanguageChange(locale)}
               className={`w-full flex items-center space-x-2 px-3 py-2 text-left hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors focus:outline-none focus:bg-sidebar-accent focus:text-sidebar-accent-foreground ${
-                locale === currentLocale
-                  ? 'bg-sidebar-accent text-sidebar-accent-foreground'
-                  : ''
+                locale === currentLocale ? '' : ''
               }`}
               role="menuitem"
               aria-current={locale === currentLocale ? 'true' : 'false'}

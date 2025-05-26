@@ -8,6 +8,7 @@ import { LocalizedPage } from '@/lib/types';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getTranslation } from '@/i18n.utils';
+import { localizeLink } from '@/lib/utils';
 
 async function loader(locale: Locale) {
   const { data } = await getPageBySlug('blog', locale);
@@ -48,6 +49,7 @@ const Blog: LocalizedPage<{ page?: string; query?: string }> = async function ({
       <BlockRenderer blocks={blocks} />
       <ContentList
         path="/api/articles"
+        basePath={localizeLink(locale, '/blog')}
         component={BlogCard}
         showSearch
         query={query}

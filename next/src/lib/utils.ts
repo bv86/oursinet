@@ -1,4 +1,4 @@
-import { S3_BASE_URL } from '@/config';
+import { Locale, S3_BASE_URL } from '@/config';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -69,4 +69,23 @@ export function formatDate(
   const date =
     typeof dateString === 'string' ? new Date(dateString) : dateString;
   return date.toLocaleDateString(undefined, options);
+}
+
+export function localizeLink(locale: Locale, path: string): string {
+  if (path.startsWith('http')) return path; // If it's an absolute URL, return it as is
+
+  if (!locale) {
+    throw new Error('Locale must be provided for localizing links');
+  }
+
+  // Ensure the path starts with a slash
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+
+  // If the locale is already in the path, return it as is
+  if (normalizedPath.startsWith(`/${locale}/`)) {
+    return normalizedPath;
+  }
+
+  // Otherwise, prepend the locale to the path
+  return `/${locale}${normalizedPath}`;
 }

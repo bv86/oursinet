@@ -12,6 +12,7 @@ interface ContentListProps {
   page?: string;
   showPagination?: boolean;
   locale: Locale;
+  basePath: string;
 }
 
 async function loader(
@@ -35,6 +36,7 @@ export async function ContentList({
   page,
   showPagination,
   locale,
+  basePath,
 }: Readonly<ContentListProps>) {
   const { articles, pageCount } = await loader(locale, path, query, page);
   const Component = component;
@@ -44,7 +46,11 @@ export async function ContentList({
       {showSearch && <Search />}
       <div className="w-full flex flex-col gap-4">
         {articles.map((article) => (
-          <Component key={article.documentId} {...article} basePath={path} />
+          <Component
+            key={article.documentId}
+            {...article}
+            basePath={basePath}
+          />
         ))}
       </div>
       {showPagination && <PaginationComponent pageCount={pageCount} />}
