@@ -9,6 +9,10 @@ const dictionaries = {
   fr: () => import('./dictionaries/fr.json').then((module) => module.default),
 };
 
+export type Dictionary = typeof dictionaries.en extends () => Promise<infer T>
+  ? T
+  : never;
+
 export const getDictionary = async (locale: Locale) =>
   dictionaries[locale]?.() ?? dictionaries.en();
 

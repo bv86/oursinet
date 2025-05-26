@@ -43,7 +43,7 @@ export async function ContentList({
 
   return (
     <section className="flex flex-col gap-8 items-center px-4 lg:px-0">
-      {showSearch && <Search />}
+      {showSearch && <Search locale={locale} />}
       <div className="w-full flex flex-col gap-4">
         {articles.map((article) => (
           <Component

@@ -3,8 +3,9 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 import { Input } from './ui/input';
 import { trackEvent } from '@/lib/analytics';
+import { Locale } from '@/config';
 
-export function Search() {
+export function Search({ locale }: { locale: Locale }) {
   // Get access to URL search parameters, routing, and current pathname
   const searchParams = useSearchParams();
   const { replace } = useRouter();
@@ -40,7 +41,7 @@ export function Search() {
     <div className="self-stretch">
       <Input
         type="text"
-        placeholder="Search"
+        placeholder={locale === 'fr' ? 'Rechercher...' : 'Search...'}
         // Call handleSearch whenever input value changes
         onChange={(e) => handleSearch(e.target.value)}
         // Initialize input with existing search query from URL

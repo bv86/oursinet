@@ -240,14 +240,14 @@ export async function getAllArticlesForSitemap(locale: Locale) {
     locale,
     fields: ['slug', 'updatedAt', 'publishedAt'],
     pagination: {
-      pageSize: 100, // Adjust if you have more than 100 articles
+      pageSize: 1000, // Adjust if you have more than 100 articles
+      page: 1,
     },
     publicationState: 'live',
   });
   return fetchAPI(url.href, {
     method: 'GET',
     locale,
-    next: { revalidate: 3600 }, // Revalidate every hour
   });
 }
 
@@ -258,13 +258,13 @@ export async function getAllPagesForSitemap(locale: Locale) {
     locale,
     fields: ['slug', 'updatedAt', 'publishedAt'],
     pagination: {
-      pageSize: 100, // Adjust if you have more than 100 pages
+      pageSize: 1000, // Adjust if you have more than 100 pages
+      page: 1,
     },
     publicationState: 'live',
   });
   return fetchAPI(url.href, {
     method: 'GET',
     locale,
-    next: { revalidate: 3600 }, // Revalidate every hour
   });
 }
