@@ -243,7 +243,6 @@ export async function getAllArticlesForSitemap(locale: Locale) {
       pageSize: 1000, // Adjust if you have more than 100 articles
       page: 1,
     },
-    publicationState: 'live',
   });
   return fetchAPI(url.href, {
     method: 'GET',
@@ -261,7 +260,6 @@ export async function getAllPagesForSitemap(locale: Locale) {
       pageSize: 1000, // Adjust if you have more than 100 pages
       page: 1,
     },
-    publicationState: 'live',
   });
   return fetchAPI(url.href, {
     method: 'GET',
