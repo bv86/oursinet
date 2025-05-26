@@ -20,7 +20,12 @@
       "type": "string"
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "header": {
       "displayName": "Header",
