@@ -16,11 +16,13 @@ function getLocale(request: NextRequest): string | undefined {
   // Fall back to browser language detection
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
-
   const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
-
-  const locale = matchLocale(languages, locales, defaultLocale);
-  return locale;
+  try {
+    const locale = matchLocale(languages, locales, defaultLocale);
+    return locale;
+  } catch {
+    return 'en'; // Fallback to English if detection fails
+  }
 }
 
 export function middleware(request: NextRequest) {
