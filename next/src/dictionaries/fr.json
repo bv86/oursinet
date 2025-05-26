@@ -28,7 +28,7 @@
   "meta": {
     "description": "Site web et blog personnel de Benoit Vannesson. Explorez des articles, des tutoriels et des commentaires sur les nouvelles technologies, le développement web et plus encore.",
     "home": {
-      "title": "Accueil | Oursi.net - Benoit Vannesson",
+      "title": "Accueil",
       "description": "Bienvenue sur mon site perso! Explorez mon blog sur le développement web et la programmation ou découvrez en plus sur moi!"
     },
     "blog": {

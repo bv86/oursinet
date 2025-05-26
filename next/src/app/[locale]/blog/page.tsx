@@ -13,7 +13,7 @@ import { localizeLink } from '@/lib/utils';
 async function loader(locale: Locale) {
   const { data } = await getPageBySlug('blog', locale);
   if (data.length === 0) notFound();
-  return { blocks: data[0]?.blocks };
+  return { blocks: data[0]?.blocks, data: data[0] };
 }
 
 export async function generateMetadata({
@@ -22,13 +22,21 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { data } = await loader(locale);
 
-  const title = 'Blog';
-  const description = await getTranslation(locale, 'meta.blog.description');
+  const title = data.title || 'Blog';
+  const description =
+    data.description || (await getTranslation(locale, 'meta.blog.description'));
 
   return {
     title,
     description,
+    alternates: {
+      languages: {
+        'en-US': localizeLink('en', '/blog'),
+        'fr-FR': localizeLink('fr', '/blog'),
+      },
+    },
     openGraph: {
       title: `Blog | Oursi.net - Benoit Vannesson`,
       description,

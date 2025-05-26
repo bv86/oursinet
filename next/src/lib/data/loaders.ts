@@ -41,8 +41,9 @@ export async function getHomePage(locale: Locale) {
   return fetchAPI(url.href, { method: 'GET', locale });
 }
 
-const pageBySlugQuery = (slug: string) =>
+const pageBySlugQuery = (locale: Locale, slug: string) =>
   qs.stringify({
+    locale,
     filters: {
       slug: {
         $eq: slug,
@@ -93,9 +94,9 @@ const pageBySlugQuery = (slug: string) =>
   });
 
 export async function getPageBySlug(slug: string, locale: Locale) {
-  const path = `/api/pages${locale ? `?locale=${locale}` : ''}`;
+  const path = '/api/pages';
   const url = new URL(path, STRAPI_BASE_URL);
-  url.search = pageBySlugQuery(slug);
+  url.search = pageBySlugQuery(locale, slug);
   return await fetchAPI(url.href, { method: 'GET', locale });
 }
 
@@ -143,6 +144,7 @@ export async function getContent(
   const url = new URL(path, STRAPI_BASE_URL);
 
   url.search = qs.stringify({
+    locale,
     sort: ['createdAt:desc'],
     filters: {
       $or: [
@@ -159,7 +161,6 @@ export async function getContent(
         fields: ['url', 'alternativeText'],
       },
     },
-    locale,
   });
 
   return fetchAPI(url.href, { method: 'GET', locale });
@@ -215,6 +216,7 @@ export async function getContentBySlug(
 ) {
   const url = new URL(path, STRAPI_BASE_URL);
   url.search = qs.stringify({
+    locale,
     filters: {
       slug: {
         $eq: slug,

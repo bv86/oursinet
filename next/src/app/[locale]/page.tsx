@@ -18,9 +18,12 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { title, description } = await loader(locale);
+
   return {
-    title: await getTranslation(locale, 'meta.home.title'),
-    description: await getTranslation(locale, 'meta.home.description'),
+    title: `${title || (await getTranslation(locale, 'meta.home.title'))} | Oursi.net - Benoit Vannesson`,
+    description:
+      description || (await getTranslation(locale, 'meta.home.description')),
     keywords: [
       'Benoit Vannesson',
       'Web Development',
@@ -28,9 +31,16 @@ export async function generateMetadata({
       'Portfolio',
       'Oursi.net',
     ],
+    alternates: {
+      languages: {
+        'en-US': '/en',
+        'fr-FR': '/fr',
+      },
+    },
     openGraph: {
-      title: await getTranslation(locale, 'meta.home.title'),
-      description: await getTranslation(locale, 'meta.home.description'),
+      title: `${title || (await getTranslation(locale, 'meta.home.title'))} | Oursi.net - Benoit Vannesson`,
+      description:
+        description || (await getTranslation(locale, 'meta.home.description')),
       type: 'website',
       url: 'https://oursi.net/',
       siteName: 'Oursi.net',

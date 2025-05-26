@@ -5,7 +5,6 @@ import { type Locale } from '@/config';
 import type { LocalizedStrapiPage } from '@/lib/types';
 import { getPageBySlug } from '@/lib/data/loaders';
 import { PageAnalytics } from '@/components/PageAnalytics';
-import { getTranslation } from '@/i18n.utils';
 
 async function loader({ slug, locale }: { slug: string; locale: Locale }) {
   const { data } = await getPageBySlug(slug, locale);
@@ -21,11 +20,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   try {
     const { locale, slug } = await params;
-    const title = await getTranslation(locale, `meta.${slug}.title`);
-    const description = await getTranslation(
-      locale,
-      `meta.${slug}.description`
-    );
+    const { data } = await loader({ slug, locale });
+    const title = data.title || slug;
+    const description =
+      data.description ||
+      'Explore content on Oursi.net, the personal website of Benoit Vannesson';
 
     return {
       title,
@@ -34,6 +33,12 @@ export async function generateMetadata({
         title: `${title} | Oursi.net - Benoit Vannesson`,
         description,
         type: 'website',
+      },
+      alternates: {
+        languages: {
+          'en-US': `/${locale}/${slug}`,
+          'fr-FR': `/${locale}/${slug}`,
+        },
       },
     };
   } catch {

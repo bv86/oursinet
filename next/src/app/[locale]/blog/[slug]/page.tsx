@@ -29,12 +29,18 @@ export async function generateMetadata({
     const { slug, locale } = await params;
     const { article } = await loader(slug, locale);
     return {
-      title: `${article.title}`,
+      title: article.title,
       description:
         article.description ||
         'Read this article on Oursi.net, the personal blog of Benoit Vannesson',
+      alternates: {
+        languages: {
+          'en-US': `/en/blog/${slug}`,
+          'fr-FR': `/fr/blog/${slug}`,
+        },
+      },
       openGraph: {
-        title: article.title,
+        title: `${article.title} | Oursi.net - Benoit Vannesson`,
         description: article.description,
         type: 'article',
         // Add image if available
