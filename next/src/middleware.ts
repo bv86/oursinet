@@ -31,6 +31,10 @@ export function middleware(request: NextRequest) {
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
 
+  if (pathname === '/robots.txt' || pathname === '/sitemap.xml') {
+    return NextResponse.next();
+  }
+
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request) || defaultLocale;

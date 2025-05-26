@@ -75,7 +75,7 @@ export function localizeLink(locale: Locale, path: string): string {
   if (path.startsWith('http')) return path; // If it's an absolute URL, return it as is
 
   if (!locale) {
-    throw new Error('Locale must be provided for localizing links');
+    return path; // If no locale is provided, return the path as is
   }
 
   // Ensure the path starts with a slash

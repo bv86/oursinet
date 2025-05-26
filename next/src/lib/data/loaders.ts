@@ -231,3 +231,40 @@ export async function getContentBySlug(
   });
   return fetchAPI(url.href, { method: 'GET', locale });
 }
+
+// Helper functions for sitemap generation
+export async function getAllArticlesForSitemap(locale: Locale) {
+  const path = '/api/articles';
+  const url = new URL(path, STRAPI_BASE_URL);
+  url.search = qs.stringify({
+    locale,
+    fields: ['slug', 'updatedAt', 'publishedAt'],
+    pagination: {
+      pageSize: 100, // Adjust if you have more than 100 articles
+    },
+    publicationState: 'live',
+  });
+  return fetchAPI(url.href, {
+    method: 'GET',
+    locale,
+    next: { revalidate: 3600 }, // Revalidate every hour
+  });
+}
+
+export async function getAllPagesForSitemap(locale: Locale) {
+  const path = '/api/pages';
+  const url = new URL(path, STRAPI_BASE_URL);
+  url.search = qs.stringify({
+    locale,
+    fields: ['slug', 'updatedAt', 'publishedAt'],
+    pagination: {
+      pageSize: 100, // Adjust if you have more than 100 pages
+    },
+    publicationState: 'live',
+  });
+  return fetchAPI(url.href, {
+    method: 'GET',
+    locale,
+    next: { revalidate: 3600 }, // Revalidate every hour
+  });
+}
