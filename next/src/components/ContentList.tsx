@@ -2,6 +2,7 @@ import { ArticleProps } from '@/lib/types';
 import { Search } from '@/components/Search';
 import { getContent } from '@/lib/data/loaders';
 import { PaginationComponent } from './PaginationComponent';
+import { Locale } from '@/config';
 
 interface ContentListProps {
   query?: string;
@@ -10,10 +11,16 @@ interface ContentListProps {
   showSearch?: boolean;
   page?: string;
   showPagination?: boolean;
+  locale: Locale;
 }
 
-async function loader(path: string, query?: string, page?: string) {
-  const { data, meta } = await getContent(path, query, page);
+async function loader(
+  locale: Locale,
+  path: string,
+  query?: string,
+  page?: string
+) {
+  const { data, meta } = await getContent(locale, path, query, page);
   return {
     articles: (data as ArticleProps[]) || [],
     pageCount: meta?.pagination?.pageCount || 1,
@@ -27,8 +34,9 @@ export async function ContentList({
   query,
   page,
   showPagination,
+  locale,
 }: Readonly<ContentListProps>) {
-  const { articles, pageCount } = await loader(path, query, page);
+  const { articles, pageCount } = await loader(locale, path, query, page);
   const Component = component;
 
   return (

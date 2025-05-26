@@ -8,6 +8,11 @@
     "follow_me": "Follow me",
     "all_rights_reserved": "All rights reserved"
   },
+  "language": {
+    "select": "Select language",
+    "english": "English",
+    "french": "Français"
+  },
   "home": {
     "title": "Welcome to my website!",
     "description": "This is a blog about web development and programming"
@@ -19,5 +24,20 @@
   "about": {
     "title": "Coming soon... more about me",
     "description": "This is a blog about web development and programming"
+  },
+  "meta": {
+    "description": "Personal website and blog of Benoit Vannesson. Explore articles, tutorials, and insights on technology, web development, and more.",
+    "home": {
+      "title": "Home | Oursi.net - Benoit Vannesson",
+      "description": "Welcome to my personal website! Explore my blog about web development and programming or learn more about me!"
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Explore my blog about web development and programming"
+    },
+    "about": {
+      "title": "About me",
+      "description": "Learn more about me and my work"
+    }
   }
 }

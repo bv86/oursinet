@@ -8,6 +8,11 @@
     "follow_me": "Me suivre",
     "all_rights_reserved": "Tous droits réservés"
   },
+  "language": {
+    "select": "Choisir la langue",
+    "english": "English",
+    "french": "Français"
+  },
   "home": {
     "title": "Bienvenue sur mon site !",
     "description": "This is a blog about web development and programming"
@@ -19,5 +24,20 @@
   "about": {
     "title": "Bientôt... plus d'infos sur moi",
     "description": "This is a blog about web development and programming"
+  },
+  "meta": {
+    "description": "Site web et blog personnel de Benoit Vannesson. Explorez des articles, des tutoriels et des commentaires sur les nouvelles technologies, le développement web et plus encore.",
+    "home": {
+      "title": "Accueil | Oursi.net - Benoit Vannesson",
+      "description": "Bienvenue sur mon site perso! Explorez mon blog sur le développement web et la programmation ou découvrez en plus sur moi!"
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Explorez mon blog sur le développement web et la programmation"
+    },
+    "about": {
+      "title": "A propos de moi",
+      "description": "En savoir plus sur moi et mon travail"
+    }
   }
 }

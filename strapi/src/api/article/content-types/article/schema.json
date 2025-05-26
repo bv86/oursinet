@@ -17,10 +17,20 @@
   },
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "slug": {
       "type": "uid",
@@ -30,7 +40,12 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": ["images"],
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
     },
     "blocks": {
       "type": "dynamiczone",
@@ -41,7 +56,12 @@
         "blocks.paragraph-with-image",
         "blocks.heading",
         "blocks.full-image"
-      ]
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "tags": {
       "type": "relation",
@@ -49,9 +69,10 @@
       "target": "api::tag.tag"
     },
     "logo": {
-      "allowedTypes": ["images"],
       "type": "media",
-      "multiple": false
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
     }
   }
 }

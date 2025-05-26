@@ -93,13 +93,13 @@ const pageBySlugQuery = (slug: string) =>
   });
 
 export async function getPageBySlug(slug: string, locale: Locale) {
-  const path = '/api/pages';
+  const path = `/api/pages${locale ? `?locale=${locale}` : ''}`;
   const url = new URL(path, STRAPI_BASE_URL);
   url.search = pageBySlugQuery(slug);
   return await fetchAPI(url.href, { method: 'GET', locale });
 }
 
-const globalSettings = () => {
+const globalSettings = (locale: Locale) => {
   return qs.stringify({
     populate: {
       header: {
@@ -120,20 +120,26 @@ const globalSettings = () => {
         },
       },
     },
+    locale,
   });
 };
 
 export async function getGlobalSettings(locale: Locale) {
   const path = '/api/global';
   const url = new URL(path, STRAPI_BASE_URL);
-  url.search = await globalSettings();
+  url.search = await globalSettings(locale);
   return fetchAPI(url.href, {
     method: 'GET',
     locale,
   });
 }
 
-export async function getContent(path: string, query?: string, page?: string) {
+export async function getContent(
+  locale: Locale,
+  path: string,
+  query?: string,
+  page?: string
+) {
   const url = new URL(path, STRAPI_BASE_URL);
 
   url.search = qs.stringify({
@@ -153,9 +159,10 @@ export async function getContent(path: string, query?: string, page?: string) {
         fields: ['url', 'alternativeText'],
       },
     },
+    locale,
   });
 
-  return fetchAPI(url.href, { method: 'GET' });
+  return fetchAPI(url.href, { method: 'GET', locale });
 }
 
 const blogPopulate = {
@@ -201,7 +208,11 @@ const blogPopulate = {
   },
 };
 
-export async function getContentBySlug(slug: string, path: string) {
+export async function getContentBySlug(
+  slug: string,
+  path: string,
+  locale: Locale
+) {
   const url = new URL(path, STRAPI_BASE_URL);
   url.search = qs.stringify({
     filters: {
@@ -216,6 +227,5 @@ export async function getContentBySlug(slug: string, path: string) {
       ...blogPopulate,
     },
   });
-  console.log('url should be', url.href);
-  return fetchAPI(url.href, { method: 'GET' });
+  return fetchAPI(url.href, { method: 'GET', locale });
 }

@@ -1,25 +1,69 @@
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 
 import { BlockRenderer } from '@/components/BlockRenderer';
 import { HeroSection } from '@/components/blocks/HeroSection';
 import { getContentBySlug } from '@/lib/data/loaders';
 import { ArticleProps } from '@/lib/types';
 import { PageAnalytics } from '@/components/PageAnalytics';
+import { Locale } from '@/config';
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: Locale }>;
 }
 
-async function loader(slug: string) {
-  const { data } = await getContentBySlug(slug, '/api/articles');
+async function loader(slug: string, locale: Locale) {
+  const { data } = await getContentBySlug(slug, '/api/articles', locale);
   const article = data[0];
   if (!article) throw notFound();
   return { article: article as ArticleProps, blocks: article?.blocks };
 }
 
+// Generate dynamic metadata for each blog post
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: Locale }>;
+}): Promise<Metadata> {
+  try {
+    const { slug, locale } = await params;
+    const { article } = await loader(slug, locale);
+    return {
+      title: `${article.title}`,
+      description:
+        article.description ||
+        'Read this article on Oursi.net, the personal blog of Benoit Vannesson',
+      openGraph: {
+        title: article.title,
+        description: article.description,
+        type: 'article',
+        // Add image if available
+        ...(article.image?.url
+          ? {
+              images: [
+                {
+                  url: article.image.url,
+                  width: 1200,
+                  height: 630,
+                  alt: article.image.alternativeText || article.title,
+                },
+              ],
+            }
+          : {}),
+      },
+    };
+  } catch {
+    return {
+      title: 'Blog Article',
+      description:
+        'Read this article on Oursi.net, the personal blog of Benoit Vannesson',
+    };
+  }
+}
+
 export default async function SingleBlogRoute({ params }: PageProps) {
-  const slug = (await params).slug;
-  const { article, blocks } = await loader(slug);
+  const { slug, locale } = await params;
+  const { article, blocks } = await loader(slug, locale);
   const { title, image } = article;
 
   return (

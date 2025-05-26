@@ -4,7 +4,8 @@
   "info": {
     "singularName": "global",
     "pluralName": "globals",
-    "displayName": "Global"
+    "displayName": "Global",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -25,13 +26,23 @@
       "displayName": "Header",
       "type": "component",
       "repeatable": false,
-      "component": "layouts.header"
+      "component": "layouts.header",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "footer": {
       "displayName": "Footer",
       "type": "component",
       "repeatable": false,
-      "component": "layouts.footer"
+      "component": "layouts.footer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
