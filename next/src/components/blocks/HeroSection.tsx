@@ -19,7 +19,7 @@ export function HeroSection({ title, cta, image }: Readonly<HeroSectionProps>) {
             {title}
           </h1>
         </div>
-        {cta && (
+        {cta && cta.href && cta.text && (
           <Button>
             <Link href={cta.href} target={cta.isExternal ? '_blank' : '_self'}>
               {cta.text}
