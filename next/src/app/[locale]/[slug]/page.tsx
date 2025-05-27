@@ -5,6 +5,7 @@ import { type Locale } from '@/config';
 import type { LocalizedStrapiPage } from '@/lib/types';
 import { getPageBySlug } from '@/lib/data/loaders';
 import { PageAnalytics } from '@/components/PageAnalytics';
+import { Suspense } from 'react';
 
 async function loader({ slug, locale }: { slug: string; locale: Locale }) {
   const { data } = await getPageBySlug(slug, locale);
@@ -65,7 +66,9 @@ const DynamicPage: LocalizedStrapiPage = async ({ params }) => {
   return (
     <div className="w-full h-full flex flex-col gap-4 md:gap-8 pb-8">
       <BlockRenderer blocks={blocks} />
-      <PageAnalytics contentId={settings.slug} contentType="main" />
+      <Suspense>
+        <PageAnalytics contentId={settings.slug} contentType="main" />
+      </Suspense>
     </div>
   );
 };
