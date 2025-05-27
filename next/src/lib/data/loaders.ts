@@ -38,7 +38,13 @@ export async function getHomePage(locale: Locale) {
       },
     },
   });
-  return fetchAPI(url.href, { method: 'GET', locale });
+  return fetchAPI(url.href, {
+    method: 'GET',
+    locale,
+    next: {
+      revalidate: 300, // Revalidate every 5 minutes
+    },
+  });
 }
 
 const pageBySlugQuery = (locale: Locale, slug: string) =>
@@ -97,7 +103,13 @@ export async function getPageBySlug(slug: string, locale: Locale) {
   const path = '/api/pages';
   const url = new URL(path, STRAPI_BASE_URL);
   url.search = pageBySlugQuery(locale, slug);
-  return await fetchAPI(url.href, { method: 'GET', locale });
+  return await fetchAPI(url.href, {
+    method: 'GET',
+    locale,
+    next: {
+      revalidate: 300, // Revalidate every 5 minutes
+    },
+  });
 }
 
 const globalSettings = (locale: Locale) => {
@@ -132,6 +144,9 @@ export async function getGlobalSettings(locale: Locale) {
   return fetchAPI(url.href, {
     method: 'GET',
     locale,
+    next: {
+      revalidate: 3600, // Revalidate every hour
+    },
   });
 }
 
@@ -163,7 +178,13 @@ export async function getContent(
     },
   });
 
-  return fetchAPI(url.href, { method: 'GET', locale });
+  return fetchAPI(url.href, {
+    method: 'GET',
+    locale,
+    next: {
+      revalidate: 300, // Revalidate every 5 minutes
+    },
+  });
 }
 
 const blogPopulate = {
@@ -229,7 +250,13 @@ export async function getContentBySlug(
       ...blogPopulate,
     },
   });
-  return fetchAPI(url.href, { method: 'GET', locale });
+  return fetchAPI(url.href, {
+    method: 'GET',
+    locale,
+    next: {
+      revalidate: 300, // Revalidate every 5 minutes
+    },
+  });
 }
 
 // Helper functions for sitemap generation
@@ -247,6 +274,9 @@ export async function getAllArticlesForSitemap(locale: Locale) {
   return fetchAPI(url.href, {
     method: 'GET',
     locale,
+    next: {
+      revalidate: 3600, // Revalidate every hour
+    },
   });
 }
 
@@ -264,5 +294,8 @@ export async function getAllPagesForSitemap(locale: Locale) {
   return fetchAPI(url.href, {
     method: 'GET',
     locale,
+    next: {
+      revalidate: 3600, // Revalidate every hour
+    },
   });
 }

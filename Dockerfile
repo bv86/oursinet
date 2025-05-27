@@ -8,10 +8,12 @@ WORKDIR /usr/src/app
 COPY pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm fetch
 COPY . .
-RUN pnpm install --frozen-lockfile
-RUN pnpm run -r build
-RUN pnpm deploy --filter=cms --legacy --prod /prod/strapi
-RUN pnpm deploy --filter=frontend --legacy --prod /prod/next
+ARG STRAPI_BASE_URL
+ENV STRAPI_BASE_URL=${STRAPI_BASE_URL:-https://strapi.oursi.net}
+ARG WEBSITE_URL
+ENV WEBSITE_URL=${WEBSITE_URL:-https://oursi.net}
+RUN pnpm i && pnpm run -r build \
+    && pnpm deploy --filter=cms --legacy --prod /prod/strapi
 
 FROM base AS strapi
 COPY --from=build /prod/strapi /prod/strapi
@@ -21,8 +23,9 @@ EXPOSE 1337
 CMD [ "pnpm", "start" ]
 
 FROM base AS next
-COPY --from=build /prod/next /prod/next
-COPY --from=build /usr/src/app/next/.next /prod/next/.next
+COPY --from=build /usr/src/app/next/.next/standalone /prod/next
+COPY --from=build /usr/src/app/next/.next/static /prod/next/next/.next/static
+COPY --from=build /usr/src/app/next/public /prod/next/next/public
 WORKDIR /prod/next
 EXPOSE 3000
-CMD [ "pnpm", "start" ]
+CMD [ "node", "next/server.js" ]

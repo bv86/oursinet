@@ -11,6 +11,8 @@ import { getTranslation } from '@/i18n.utils';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
+export const revalidate = 3600; // Revalidate every hour
+
 export async function generateMetadata({
   params,
 }: {

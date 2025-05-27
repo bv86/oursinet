@@ -3,6 +3,7 @@ packages:
   - strapi
 onlyBuiltDependencies:
   - "@swc/core"
+  - "@codemirror/state"
   - core-js-pure
   - esbuild
   - sharp

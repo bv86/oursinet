@@ -12,6 +12,14 @@ async function loader({ slug, locale }: { slug: string; locale: Locale }) {
   return { blocks: data[0]?.blocks, data: data[0] };
 }
 
+export const revalidate = 3600; // Revalidate every hour
+
+export async function generateStaticParams() {
+  // This function is used to generate static parameters for dynamic routes.
+  // It can be used to pre-render pages at build time.
+  return [{ slug: 'about' }];
+}
+
 // Generate dynamic metadata for each page
 export async function generateMetadata({
   params,

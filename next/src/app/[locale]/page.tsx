@@ -12,6 +12,14 @@ async function loader(locale: Locale) {
   return { ...data.data };
 }
 
+/**
+ * Generates static parameters for the home page in different locales.
+ * @returns An array of static parameters for the home page in different locales.
+ */
+export async function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'fr' }];
+}
+
 export async function generateMetadata({
   params,
 }: {

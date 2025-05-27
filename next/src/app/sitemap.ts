@@ -25,6 +25,8 @@ interface StrapiContent {
   publishedAt: string;
 }
 
+export const revalidate = 300; // Revalidate every 5 minutes
+
 // Fetch all articles from Strapi for all locales
 async function getAllArticles(): Promise<
   (StrapiContent & { locale: string })[]

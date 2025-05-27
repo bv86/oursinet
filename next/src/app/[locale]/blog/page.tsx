@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getTranslation } from '@/i18n.utils';
 import { localizeLink } from '@/lib/utils';
+import { Suspense } from 'react';
 
 async function loader(locale: Locale) {
   const { data } = await getPageBySlug('blog', locale);
@@ -55,17 +56,19 @@ const Blog: LocalizedPage<{ page?: string; query?: string }> = async function ({
   return (
     <div className="flex flex-col gap-8 pb-8">
       <BlockRenderer blocks={blocks} />
-      <ContentList
-        path="/api/articles"
-        basePath={localizeLink(locale, '/blog')}
-        component={BlogCard}
-        showSearch
-        query={query}
-        showPagination
-        page={page}
-        locale={locale}
-      />
-      <PageAnalytics contentId="blog" contentType="main" />
+      <Suspense>
+        <ContentList
+          path="/api/articles"
+          basePath={localizeLink(locale, '/blog')}
+          component={BlogCard}
+          showSearch
+          query={query}
+          showPagination
+          page={page}
+          locale={locale}
+        />
+        <PageAnalytics contentId="blog" contentType="main" />
+      </Suspense>
     </div>
   );
 };

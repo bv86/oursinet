@@ -20,6 +20,7 @@
     "format:fix": "prettier --write ."
   },
   "dependencies": {
+    "@codemirror/state": "^6.5.2",
     "@strapi/plugin-cloud": "5.11.0",
     "@strapi/plugin-users-permissions": "5.11.0",
     "@strapi/strapi": "5.11.0",

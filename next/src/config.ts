@@ -7,9 +7,7 @@ export const pathnames = {};
 export const localePrefix = 'always';
 
 export const port = process.env.PORT || 3000;
-export const host = process.env.WEBSITE_URL
-  ? `https://${process.env.WEBSITE_URL}`
-  : `http://localhost:${port}`;
+export const host = process.env.WEBSITE_URL || `http://localhost:${port}`;
 
 export const STRAPI_BASE_URL =
   process.env.STRAPI_BASE_URL || 'http://127.0.0.1:1337';

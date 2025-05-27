@@ -1,3 +1,4 @@
+import { host } from '@/config';
 import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
@@ -6,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://oursi.net/sitemap.xml',
+    sitemap: `${host}/sitemap.xml`,
   };
 }

@@ -3,10 +3,50 @@ import { Metadata } from 'next';
 
 import { BlockRenderer } from '@/components/BlockRenderer';
 import { HeroSection } from '@/components/blocks/HeroSection';
-import { getContentBySlug } from '@/lib/data/loaders';
+import { getAllArticlesForSitemap, getContentBySlug } from '@/lib/data/loaders';
 import { ArticleProps } from '@/lib/types';
 import { PageAnalytics } from '@/components/PageAnalytics';
 import { Locale } from '@/config';
+import { Suspense } from 'react';
+
+export const revalidate = 3600; // Revalidate every hour
+
+export async function generateStaticParams() {
+  try {
+    // Fetch articles for both locales
+    const [enArticles, frArticles] = await Promise.all([
+      getAllArticlesForSitemap('en'),
+      getAllArticlesForSitemap('fr'),
+    ]);
+
+    const params = [];
+
+    // Generate params for English articles
+    if (enArticles.data) {
+      params.push(
+        ...enArticles.data.map((article: ArticleProps) => ({
+          slug: article.slug,
+          locale: 'en' as Locale,
+        }))
+      );
+    }
+
+    // Generate params for French articles
+    if (frArticles.data) {
+      params.push(
+        ...frArticles.data.map((article: ArticleProps) => ({
+          slug: article.slug,
+          locale: 'fr' as Locale,
+        }))
+      );
+    }
+
+    return params;
+  } catch (error) {
+    console.error('Error generating static params:', error);
+    return [];
+  }
+}
 
 interface PageProps {
   params: Promise<{ slug: string; locale: Locale }>;
@@ -75,7 +115,9 @@ export default async function SingleBlogRoute({ params }: PageProps) {
   return (
     <div className="flex flex-col gap-8">
       {/* Add analytics tracking for this specific blog post */}
-      <PageAnalytics contentId={slug} contentType="blog" />
+      <Suspense>
+        <PageAnalytics contentId={slug} contentType="blog" />
+      </Suspense>
 
       <HeroSection id={article.id} title={title} image={image} />
 
