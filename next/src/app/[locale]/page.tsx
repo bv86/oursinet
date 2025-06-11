@@ -1,5 +1,5 @@
 import { BlockRenderer } from '@/components/BlockRenderer';
-import { Locale } from '@/config';
+import { host, Locale } from '@/config';
 import { getHomePage } from '@/lib/data/loaders';
 import { LocalizedPage } from '@/lib/types';
 import { notFound } from 'next/navigation';
@@ -44,6 +44,7 @@ export async function generateMetadata({
         'en-US': '/en',
         'fr-FR': '/fr',
       },
+      canonical: `${host}/${locale}`,
     },
     openGraph: {
       title: `${title || (await getTranslation(locale, 'meta.home.title'))} | Oursi.net - Benoit Vannesson`,

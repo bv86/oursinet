@@ -6,7 +6,7 @@ import { HeroSection } from '@/components/blocks/HeroSection';
 import { getAllArticlesForSitemap, getContentBySlug } from '@/lib/data/loaders';
 import { ArticleProps } from '@/lib/types';
 import { PageAnalytics } from '@/components/PageAnalytics';
-import { Locale } from '@/config';
+import { host, Locale } from '@/config';
 import { Suspense } from 'react';
 
 export const revalidate = 3600; // Revalidate every hour
@@ -78,6 +78,7 @@ export async function generateMetadata({
           'en-US': `/en/blog/${slug}`,
           'fr-FR': `/fr/blog/${slug}`,
         },
+        canonical: `${host}/${locale}/blog/${slug}`,
       },
       openGraph: {
         title: `${article.title} | Oursi.net - Benoit Vannesson`,

@@ -2,7 +2,7 @@ import { BlockRenderer } from '@/components/BlockRenderer';
 import { BlogCard } from '@/components/BlogCard';
 import { ContentList } from '@/components/ContentList';
 import { PageAnalytics } from '@/components/PageAnalytics';
-import { type Locale } from '@/config';
+import { host, type Locale } from '@/config';
 import { getPageBySlug } from '@/lib/data/loaders';
 import { LocalizedPage } from '@/lib/types';
 import { notFound } from 'next/navigation';
@@ -37,6 +37,7 @@ export async function generateMetadata({
         'en-US': localizeLink('en', '/blog'),
         'fr-FR': localizeLink('fr', '/blog'),
       },
+      canonical: `${host}/${locale}/blog`,
     },
     openGraph: {
       title: `Blog | Oursi.net - Benoit Vannesson`,

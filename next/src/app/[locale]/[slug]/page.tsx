@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { BlockRenderer } from '@/components/BlockRenderer';
-import { type Locale } from '@/config';
+import { host, type Locale } from '@/config';
 import type { LocalizedStrapiPage } from '@/lib/types';
 import { getPageBySlug } from '@/lib/data/loaders';
 import { PageAnalytics } from '@/components/PageAnalytics';
@@ -48,6 +48,7 @@ export async function generateMetadata({
           'en-US': `/${locale}/${slug}`,
           'fr-FR': `/${locale}/${slug}`,
         },
+        canonical: `${host}/${locale}/${slug}`,
       },
     };
   } catch {

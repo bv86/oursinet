@@ -80,7 +80,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Static routes for each locale
   const staticRoutes = [
-    '/', // Home page
+    '', // Home page
     '/blog', // Blog listing page
   ];
 
@@ -92,8 +92,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       sitemapEntries.push({
         url,
         lastModified: new Date(),
-        changeFrequency: route === '/' ? 'weekly' : 'daily',
-        priority: route === '/' ? 0.8 : 1.0,
+        changeFrequency: route === '' ? 'weekly' : 'daily',
+        priority: route === '' ? 0.8 : 1.0,
       });
     }
   }
