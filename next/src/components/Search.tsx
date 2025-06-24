@@ -46,6 +46,9 @@ export function Search({ locale }: { locale: Locale }) {
         onChange={(e) => handleSearch(e.target.value)}
         // Initialize input with existing search query from URL
         defaultValue={searchParams.get('query')?.toString()}
+        autoComplete="off"
+        data-lpignore="true"
+        data-form-type="other"
       />
     </div>
   );
