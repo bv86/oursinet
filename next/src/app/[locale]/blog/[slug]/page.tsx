@@ -111,7 +111,7 @@ export async function generateMetadata({
 export default async function SingleBlogRoute({ params }: PageProps) {
   const { slug, locale } = await params;
   const { article, blocks } = await loader(slug, locale);
-  const { title, image } = article;
+  const { image } = article;
 
   return (
     <div className="flex flex-col gap-8">
@@ -120,7 +120,7 @@ export default async function SingleBlogRoute({ params }: PageProps) {
         <PageAnalytics contentId={slug} contentType="blog" />
       </Suspense>
 
-      <HeroSection id={article.id} title={title} image={image} />
+      <HeroSection id={article.id} title="" image={image} />
 
       <div className="flex flex-col gap-4">
         <BlockRenderer blocks={blocks} />
