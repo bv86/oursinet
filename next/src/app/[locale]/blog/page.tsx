@@ -25,7 +25,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const { data } = await loader(locale);
 
-  const title = data.title || 'Blog';
+  const title = `${data.title || 'Blog'} | Oursi.net - Benoit Vannesson`;
   const description =
     data.description || (await getTranslation(locale, 'meta.blog.description'));
 

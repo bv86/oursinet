@@ -30,7 +30,7 @@ export async function generateMetadata({
   try {
     const { locale, slug } = await params;
     const { data } = await loader({ slug, locale });
-    const title = data.title || slug;
+    const title = `${data.title || slug} | Oursi.net - Benoit Vannesson`;
     const description =
       data.description ||
       'Explore content on Oursi.net, the personal website of Benoit Vannesson';
@@ -39,7 +39,7 @@ export async function generateMetadata({
       title,
       description,
       openGraph: {
-        title: `${title} | Oursi.net - Benoit Vannesson`,
+        title,
         description,
         type: 'website',
       },
