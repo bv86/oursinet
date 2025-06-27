@@ -175,6 +175,9 @@ export async function getContent(
       logo: {
         fields: ['url', 'alternativeText'],
       },
+      tags: {
+        fields: ['tag', 'slug'],
+      },
     },
   });
 
@@ -188,6 +191,12 @@ export async function getContent(
 }
 
 const blogPopulate = {
+  image: {
+    fields: ['url', 'alternativeText'],
+  },
+  tags: {
+    fields: ['tag', 'slug'],
+  },
   blocks: {
     on: {
       'blocks.hero-section': {
@@ -244,9 +253,6 @@ export async function getContentBySlug(
       },
     },
     populate: {
-      image: {
-        fields: ['url', 'alternativeText'],
-      },
       ...blogPopulate,
     },
   });
