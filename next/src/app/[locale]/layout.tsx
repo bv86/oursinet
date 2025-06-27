@@ -21,7 +21,7 @@ export async function generateMetadata({
   const { locale } = await params;
   return {
     title: {
-      template: '%s | Oursi.net - Benoit Vannesson',
+      template: '%s',
       default: 'Oursi.net - Benoit Vannesson',
     },
     description: await getTranslation(locale, 'meta.description'),

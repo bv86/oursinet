@@ -71,7 +71,7 @@ export type Block =
   | FullImageProps;
 
 export interface HeroSectionProps extends Base<'blocks.hero-section'> {
-  title: string;
+  title?: string;
   image: ImageProps;
   cta?: LinkProps;
 }

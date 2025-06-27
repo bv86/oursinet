@@ -81,7 +81,7 @@ export async function generateMetadata({
         canonical: `${host}/${locale}/blog/${slug}`,
       },
       openGraph: {
-        title: `${article.title} | Oursi.net - Benoit Vannesson`,
+        title: `${article.title}`,
         description: article.description,
         type: 'article',
         // Add image if available
@@ -120,7 +120,7 @@ export default async function SingleBlogRoute({ params }: PageProps) {
         <PageAnalytics contentId={slug} contentType="blog" />
       </Suspense>
 
-      <HeroSection id={article.id} title="" image={image} />
+      <HeroSection id={article.id} image={image} />
 
       <div className="flex flex-col gap-4">
         <BlockRenderer blocks={blocks} />
