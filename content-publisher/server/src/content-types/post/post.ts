@@ -21,6 +21,11 @@ const schema = {
     devToLink: {
       type: 'text',
     },
+    article: {
+      type: 'relation',
+      relation: 'oneToOne',
+      target: 'api::article.article',
+    },
   },
 };
 
