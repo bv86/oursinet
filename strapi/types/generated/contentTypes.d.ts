@@ -426,6 +426,10 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       'api::article.article'
     >;
     logo: Schema.Attribute.Media<'images'>;
+    post: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::content-publisher.post'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
     tags: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'>;
@@ -644,6 +648,9 @@ export interface PluginContentPublisherPost
     'content-type-builder': {
       visible: true;
     };
+    i18n: {
+      localized: true;
+    };
   };
   attributes: {
     article: Schema.Attribute.Relation<'oneToOne', 'api::article.article'>;
@@ -651,12 +658,11 @@ export interface PluginContentPublisherPost
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     devToLink: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'plugin::content-publisher.post'
-    > &
-      Schema.Attribute.Private;
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

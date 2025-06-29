@@ -16,15 +16,13 @@ const schema = {
     'content-type-builder': {
       visible: true,
     },
+    i18n: {
+      localized: true,
+    },
   },
   attributes: {
     devToLink: {
       type: 'text',
-    },
-    article: {
-      type: 'relation',
-      relation: 'oneToOne',
-      target: 'api::article.article',
     },
   },
 };

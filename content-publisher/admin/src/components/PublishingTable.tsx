@@ -34,6 +34,8 @@ const PublishingTable = () => {
 
   const postsPerPage = 5;
 
+  console.log('posts', posts);
+
   const handleFetchPosts = async (page: number) => {
     // Calculate the start index
     const start = (page - 1) * postsPerPage;
@@ -165,15 +167,15 @@ const PublishingTable = () => {
                 </Td>
                 <Td>
                   <Typography textColor="neutral800">
-                    {post.article.title.slice(0, 30)}...
+                    {post.article?.title.slice(0, 30)}...
                   </Typography>
                 </Td>
                 <Td>
                   <Typography textColor="neutral800">
                     <Link
-                      href={`http://localhost:1337/admin/content-manager/collection-types/api::article.article/${post.article.documentId}`}
+                      href={`http://localhost:1337/admin/content-manager/collection-types/api::article.article/${post.article?.documentId}`}
                     >
-                      {post.article.title.slice(0, 30)}...
+                      {post.article?.title.slice(0, 30)}...
                     </Link>
                   </Typography>
                 </Td>
