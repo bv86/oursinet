@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 import { BlockRenderer } from '@/components/BlockRenderer';
 import { HeroSection } from '@/components/blocks/HeroSection';
-import { getAllArticlesForSitemap, getContentBySlug } from '@/lib/data/loaders';
+import { getContentBySlug } from '@/lib/data/loaders';
 import { ArticleProps } from '@/lib/types';
 import { PageAnalytics } from '@/components/PageAnalytics';
 import { host, Locale } from '@/config';
@@ -11,6 +11,7 @@ import { Suspense } from 'react';
 
 export const revalidate = 3600; // Revalidate every hour
 
+/*
 export async function generateStaticParams() {
   try {
     // Fetch articles for both locales
@@ -46,7 +47,7 @@ export async function generateStaticParams() {
     console.error('Error generating static params:', error);
     return [];
   }
-}
+}*/
 
 interface PageProps {
   params: Promise<{ slug: string; locale: Locale }>;

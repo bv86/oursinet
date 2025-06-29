@@ -1,9 +1,11 @@
 packages:
   - next
   - strapi
+  - content-publisher
 onlyBuiltDependencies:
   - "@swc/core"
   - "@codemirror/state"
   - core-js-pure
   - esbuild
   - sharp
+link-workspace-packages: deep
