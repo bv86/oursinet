@@ -63,8 +63,6 @@ const service = ({ strapi }: { strapi: Core.Strapi }) => ({
         },
       };
 
-      console.log('devToPayload', devToPayload);
-
       const response = await fetch('https://dev.to/api/articles', {
         method: 'POST',
         headers: {
@@ -74,7 +72,14 @@ const service = ({ strapi }: { strapi: Core.Strapi }) => ({
         body: JSON.stringify(devToPayload),
       });
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        try {
+          const details = await response.text();
+          console.log('Error details:', details);
+          throw new Error(`HTTP error! status: ${response.status}`);
+        } catch (error) {
+          console.error('Error parsing response:', error);
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
       }
       // parse the response
       const data = await response.json();
