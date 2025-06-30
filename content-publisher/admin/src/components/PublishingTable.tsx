@@ -19,7 +19,6 @@ import {
 
 import { Trash } from '@strapi/icons';
 
-import axios from 'axios';
 import { useState, useEffect, FormEvent } from 'react';
 
 import formattedDate from '../utils/formattedDate';
@@ -34,16 +33,16 @@ const PublishingTable = () => {
 
   const postsPerPage = 5;
 
-  console.log('posts', posts);
-
   const handleFetchPosts = async (page: number) => {
     // Calculate the start index
     const start = (page - 1) * postsPerPage;
 
     try {
-      const response = await axios.get(`/content-publisher/posts?start=${start}`);
-      setPosts(response.data.posts);
-      setPageCount(Math.ceil(response.data.totalPosts / postsPerPage));
+      const response = await fetch(`/content-publisher/posts?start=${start}`).then((res) =>
+        res.json()
+      );
+      setPosts(response.posts);
+      setPageCount(Math.ceil(response.totalPosts / postsPerPage));
     } catch (error) {
       console.error('Error fetching posts:', error);
     }
@@ -62,12 +61,12 @@ const PublishingTable = () => {
 
     try {
       // Make a GET request to the search endpoint
-      const response = await axios.get(
+      const response = await fetch(
         `/content-publisher/search?start=${start}&search=${searchValue}`
-      );
+      ).then((res) => res.json());
 
-      setPosts(response.data.posts); // Assuming the API returns matching posts
-      setPageCount(Math.ceil(response.data.totalPosts / postsPerPage));
+      setPosts(response.posts); // Assuming the API returns matching posts
+      setPageCount(Math.ceil(response.totalPosts / postsPerPage));
     } catch (error) {
       console.error('Error searching posts:', error);
     }
@@ -85,10 +84,9 @@ const PublishingTable = () => {
   };
 
   const handleDeletePost = async (id: string) => {
-    const response: Response = await axios.delete(
-      `/content-publisher/delete-post?postId=${id}`,
-      {}
-    );
+    await fetch(`/content-publisher/delete-post?postId=${id}`, {
+      method: 'DELETE',
+    });
     handleFetchPosts(1);
   };
 

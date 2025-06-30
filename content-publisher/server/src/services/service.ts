@@ -1,5 +1,4 @@
-import type { Core } from '@strapi/strapi';
-import axios from 'axios';
+import { type Core } from '@strapi/strapi';
 
 const postPerPage = 5;
 const service = ({ strapi }: { strapi: Core.Strapi }) => ({
@@ -64,16 +63,24 @@ const service = ({ strapi }: { strapi: Core.Strapi }) => ({
         },
       };
 
-      // post
-      const response = await axios.post(`https://dev.to/api/articles`, devToPayload, {
+      console.log('devToPayload', devToPayload);
+
+      const response = await fetch('https://dev.to/api/articles', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'api-key': process.env.DEVTO_API_KEY,
         },
+        body: JSON.stringify(devToPayload),
       });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      // parse the response
+      const data = await response.json();
 
       // get the dev.to url
-      const devToUrl = response.data?.url;
+      const devToUrl = data?.url;
 
       // update the post with the dev.to link
       await strapi.documents('plugin::content-publisher.post').update({
@@ -84,9 +91,10 @@ const service = ({ strapi }: { strapi: Core.Strapi }) => ({
       });
 
       // return the response
-      return response.data;
+      return data;
     } catch (error) {
-      return error.response.data;
+      console.log('Error publishing to Dev.to:', error);
+      return error.message;
     }
   },
   /**

@@ -4,6 +4,8 @@
   "compilerOptions": {
     "rootDir": "../",
     "baseUrl": ".",
-    "preserveSymlinks": true
+    "preserveSymlinks": true,
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"]
   }
 }

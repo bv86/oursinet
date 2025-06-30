@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { Box, Button, Typography, LinkButton, Flex } from '@strapi/design-system';
 import { Play, Check } from '@strapi/icons';
 
-import axios from 'axios';
-
 const PublishButton = ({ post, type }: { post: any; type: string }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -22,7 +20,13 @@ const PublishButton = ({ post, type }: { post: any; type: string }) => {
       }
 
       // Post the data
-      await axios.post(endpoint, post);
+      await fetch(endpoint, {
+        method: 'POST',
+        body: JSON.stringify(post),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
       // Reload the page
       window.location.reload();
