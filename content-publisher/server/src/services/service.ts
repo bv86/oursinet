@@ -40,12 +40,13 @@ const service = ({ strapi }: { strapi: Core.Strapi }) => ({
       // destructuring the post object
       const { title, blocks, description, slug, tags, image } = post.article;
       // get the blog tags
-      const blogTags = tags.map((tag) => tag.tag);
+      const blogTags = tags.map((tag) => tag.tag).slice(0, 4);
       // content is made by concatenating all paragraphs
       let content = blocks
         .filter((block) => block.__component === 'blocks.paragraph')
         .map((block) => block.content)
-        .join('\n\n');
+        .join('\n\n')
+        .replace(/^# .*\n?/, '');
 
       content += `\n\n*NB: [this article](https://oursi.net/en/blog/${slug}) was originally published on [oursi.net](https://oursi.net/en/blog), my personal blog where I write about Kubernetes, self-hosting, and Linux.*`;
       // payload to be sent to dev.to
