@@ -124,7 +124,7 @@ export default async function SingleBlogRoute({ params }: PageProps) {
       <HeroSection id={article.id} image={image} />
 
       <div className="flex flex-col gap-4">
-        <BlockRenderer blocks={blocks} />
+        <BlockRenderer blocks={blocks} locale={locale} />
       </div>
     </div>
   );
