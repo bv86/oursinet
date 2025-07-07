@@ -56,7 +56,7 @@ const Blog: LocalizedPage<{ page?: string; query?: string }> = async function ({
   const { blocks } = await loader(locale);
   return (
     <div className="flex flex-col gap-8 pb-8">
-      <BlockRenderer blocks={blocks} />
+      <BlockRenderer blocks={blocks} locale={locale} />
       <ContentList
         path="/api/articles"
         basePath={localizeLink(locale, '/blog')}

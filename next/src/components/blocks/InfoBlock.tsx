@@ -42,7 +42,7 @@ export function InfoBlock({
           )}
           <MarkdownRenderer content={content} />
           {cta && (
-            <Button className="mt-4">
+            <Button asChild className="mt-4">
               <Link
                 href={cta.href}
                 target={cta.isExternal ? '_blank' : '_self'}

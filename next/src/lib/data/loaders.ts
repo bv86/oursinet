@@ -23,6 +23,9 @@ const homePageBlocks = {
           cta: true,
         },
       },
+      'blocks.content-block': {
+        populate: true,
+      },
     },
   },
 };
@@ -154,7 +157,8 @@ export async function getContent(
   locale: Locale,
   path: string,
   query?: string,
-  page?: string
+  page?: string,
+  limit?: string
 ) {
   const url = new URL(path, STRAPI_BASE_URL);
 
@@ -168,7 +172,7 @@ export async function getContent(
       ],
     },
     pagination: {
-      pageSize: BLOG_PAGE_SIZE,
+      pageSize: parseInt(limit || '0') || BLOG_PAGE_SIZE,
       page: parseInt(page || '1'),
     },
     populate: {

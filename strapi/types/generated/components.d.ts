@@ -1,5 +1,20 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksContentBlock extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_content_blocks';
+  info: {
+    displayName: 'Content Block';
+    icon: 'bulletList';
+  };
+  attributes: {
+    content: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'article'>;
+    limit: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<3>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksFullImage extends Struct.ComponentSchema {
   collectionName: 'components_blocks_full_images';
   info: {
@@ -44,6 +59,7 @@ export interface BlocksInfoBlock extends Struct.ComponentSchema {
     content: Schema.Attribute.RichText;
     cta: Schema.Attribute.Component<'elements.link', false>;
     image: Schema.Attribute.Media<'images' | 'files'>;
+    reversed: Schema.Attribute.Boolean;
     title: Schema.Attribute.String;
   };
 }
@@ -119,6 +135,7 @@ export interface LayoutsHeader extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'blocks.content-block': BlocksContentBlock;
       'blocks.full-image': BlocksFullImage;
       'blocks.heading': BlocksHeading;
       'blocks.hero-section': BlocksHeroSection;

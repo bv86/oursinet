@@ -22,7 +22,7 @@ export function HeroSection({ title, cta, image }: Readonly<HeroSectionProps>) {
           </div>
         )}
         {cta && cta.href && cta.text && (
-          <Button>
+          <Button asChild>
             <Link href={cta.href} target={cta.isExternal ? '_blank' : '_self'}>
               {cta.text}
             </Link>

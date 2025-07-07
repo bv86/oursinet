@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_blocks_content_blocks",
+  "info": {
+    "displayName": "Content Block",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string",
+      "default": "article",
+      "required": true
+    },
+    "limit": {
+      "type": "integer",
+      "required": false,
+      "default": 3
+    }
+  },
+  "config": {}
+}

@@ -11,6 +11,7 @@ interface ContentListProps {
   component: React.ComponentType<ArticleProps & { basePath: string }>;
   showSearch?: boolean;
   page?: string;
+  limit?: string;
   showPagination?: boolean;
   locale: Locale;
   basePath: string;
@@ -20,9 +21,10 @@ async function loader(
   locale: Locale,
   path: string,
   query?: string,
-  page?: string
+  page?: string,
+  limit?: string
 ) {
-  const { data, meta } = await getContent(locale, path, query, page);
+  const { data, meta } = await getContent(locale, path, query, page, limit);
   return {
     articles: (data as ArticleProps[]) || [],
     pageCount: meta?.pagination?.pageCount || 1,
@@ -35,11 +37,18 @@ export async function ContentList({
   showSearch,
   query,
   page,
+  limit,
   showPagination,
   locale,
   basePath,
 }: Readonly<ContentListProps>) {
-  const { articles, pageCount } = await loader(locale, path, query, page);
+  const { articles, pageCount } = await loader(
+    locale,
+    path,
+    query,
+    page,
+    limit
+  );
   const Component = component;
 
   return (

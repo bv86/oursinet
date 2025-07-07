@@ -63,7 +63,7 @@ const Home: LocalizedPage = async ({ params }) => {
   const blocks = data?.blocks || [];
   return (
     <div className="w-full h-full flex flex-col gap-4 md:gap-8 pb-8">
-      <BlockRenderer blocks={blocks} />
+      <BlockRenderer blocks={blocks} locale={locale} />
     </div>
   );
 };

@@ -19,7 +19,8 @@
   },
   "blog": {
     "title": "Coming soon... a blog",
-    "description": "This is a blog about web development and programming"
+    "description": "This is a blog about web development and programming",
+    "see_all": "See all articles"
   },
   "about": {
     "title": "Coming soon... more about me",

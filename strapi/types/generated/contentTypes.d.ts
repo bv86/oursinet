@@ -511,7 +511,15 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['blocks.info-block', 'blocks.hero-section']
+      [
+        'blocks.info-block',
+        'blocks.hero-section',
+        'blocks.paragraph',
+        'blocks.paragraph-with-image',
+        'blocks.heading',
+        'blocks.full-image',
+        'blocks.content-block',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

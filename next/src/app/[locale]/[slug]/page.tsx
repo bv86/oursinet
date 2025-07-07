@@ -63,10 +63,11 @@ export async function generateMetadata({
 
 const DynamicPage: LocalizedStrapiPage = async ({ params }) => {
   const settings = await params;
+  const { locale } = settings;
   const { blocks } = await loader(settings);
   return (
     <div className="w-full h-full flex flex-col gap-4 md:gap-8 pb-8">
-      <BlockRenderer blocks={blocks} />
+      <BlockRenderer blocks={blocks} locale={locale} />
       <Suspense>
         <PageAnalytics contentId={settings.slug} contentType="main" />
       </Suspense>

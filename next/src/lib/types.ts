@@ -44,6 +44,7 @@ export interface ArticleProps {
 type ComponentType =
   | 'blocks.hero-section'
   | 'blocks.info-block'
+  | 'blocks.content-block'
   | 'blocks.heading'
   | 'blocks.paragraph-with-image'
   | 'blocks.paragraph'
@@ -65,6 +66,7 @@ interface Base<
 export type Block =
   | HeroSectionProps
   | InfoBlockProps
+  | ContentBlockProps
   | HeadingProps
   | ParagraphWithImageProps
   | ParagraphProps
@@ -74,6 +76,13 @@ export interface HeroSectionProps extends Base<'blocks.hero-section'> {
   title?: string;
   image: ImageProps;
   cta?: LinkProps;
+}
+
+export interface ContentBlockProps extends Base<'blocks.content-block'> {
+  title?: string;
+  content: string;
+  limit?: number;
+  locale: Locale;
 }
 
 export interface InfoBlockProps extends Base<'blocks.info-block'> {
