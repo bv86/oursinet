@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 
 export function HeroSection({ title, cta, image }: Readonly<HeroSectionProps>) {
   return (
-    <section className="relative md:min-h-[500px]">
+    <section className="relative md:min-h-[500px] min-h-[150px]">
       <StrapiImage
         src={image.url}
         alt={image.alternativeText || 'No alternative text provided'}

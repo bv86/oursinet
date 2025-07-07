@@ -115,7 +115,7 @@ export default async function SingleBlogRoute({ params }: PageProps) {
   const { image } = article;
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       {/* Add analytics tracking for this specific blog post */}
       <Suspense>
         <PageAnalytics contentId={slug} contentType="blog" />
