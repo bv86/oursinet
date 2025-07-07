@@ -3,6 +3,7 @@ import { Search } from '@/components/Search';
 import { getContent } from '@/lib/data/loaders';
 import { PaginationComponent } from './PaginationComponent';
 import { Locale } from '@/config';
+import { Suspense } from 'react';
 
 interface ContentListProps {
   query?: string;
@@ -53,7 +54,12 @@ export async function ContentList({
           />
         ))}
       </div>
-      {showPagination && <PaginationComponent pageCount={pageCount} />}
+      {showPagination && (
+        <Suspense>
+          {/* Suspense is used to handle loading states for the pagination component */}
+          <PaginationComponent page={page} pageCount={pageCount} />
+        </Suspense>
+      )}
     </section>
   );
 }

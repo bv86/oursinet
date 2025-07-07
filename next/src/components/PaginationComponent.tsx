@@ -2,9 +2,11 @@
 import { FC } from 'react';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { trackEvent } from '@/lib/analytics';
+import { Button } from './ui/button';
 
 // Props interface for the main pagination component
 interface PaginationProps {
+  page: string | undefined; // Current page number
   pageCount: number; // Total number of pages
 }
 
@@ -25,7 +27,7 @@ const PaginationArrow: FC<PaginationArrowProps> = ({
   const isLeft = direction === 'left';
 
   return (
-    <button
+    <Button
       onClick={(e) => {
         e.preventDefault();
         // Track pagination event
@@ -37,21 +39,23 @@ const PaginationArrow: FC<PaginationArrowProps> = ({
         // Use Next.js client-side navigation without scroll reset
         router.push(href, { scroll: false });
       }}
-      className={`pagination-arrow ${isDisabled ? 'disabled' : ''}`}
+      className={`pagination-arrow ${isDisabled ? 'disabled' : 'cursor-pointer'}`}
       aria-disabled={isDisabled}
       disabled={isDisabled}
     >
       {isLeft ? '«' : '»'}
-    </button>
+    </Button>
   );
 };
 
-export function PaginationComponent({ pageCount }: Readonly<PaginationProps>) {
-  // Get current URL path and search parameters using Next.js hooks
-  const pathname = usePathname();
+export function PaginationComponent({
+  page,
+  pageCount,
+}: Readonly<PaginationProps>) {
+  const currentPage = page ? parseInt(page, 10) : 1; // Parse current page from props or default to 1
+
   const searchParams = useSearchParams();
-  // Extract current page from URL params, defaulting to 1 if not present
-  const currentPage = Number(searchParams.get('page')) || 1;
+  const pathname = usePathname(); // Get current path for URL generation
 
   // Helper function to create URLs for pagination
   const createPageURL = (pageNumber: number | string) => {
@@ -62,7 +66,7 @@ export function PaginationComponent({ pageCount }: Readonly<PaginationProps>) {
 
   return (
     <nav role="navigation" aria-label="Pagination" className="">
-      <ul className="flex flex-row gap-4">
+      <ul className="flex flex-row gap-4 items-center">
         {/* Left arrow - disabled if on first page */}
         <li>
           <PaginationArrow
@@ -73,7 +77,9 @@ export function PaginationComponent({ pageCount }: Readonly<PaginationProps>) {
         </li>
         {/* Current page indicator */}
         <li>
-          <span className="page-number">Page {currentPage}</span>
+          <span className="page-number">
+            Page {currentPage} / {pageCount}
+          </span>
         </li>
         {/* Right arrow - disabled if on last page */}
         <li>

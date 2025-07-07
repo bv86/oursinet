@@ -20,7 +20,7 @@ DUMP_DIR="$PROJECT_ROOT/utils/db_dumps"
 DUMP_FILE="$DUMP_DIR/strapi_db_dump_$(date +%Y%m%d-%H%M%S).sql"
 ENV_FILE="$PROJECT_ROOT/strapi/.env"
 NAMESPACE="main"
-SERVICE_NAME="acid-strapi-0"
+SERVICE_NAME="postgres-strapi-0"
 PORT_FORWARD_PID=""
 
 # Function for cleanup on exit
@@ -81,7 +81,7 @@ fi
 # Parse database credentials from env file
 DB_NAME=$(grep DATABASE_NAME "$ENV_FILE" | cut -d '=' -f2)
 DB_USER=$(grep DATABASE_USERNAME "$ENV_FILE" | cut -d '=' -f2)
-DB_PASSWORD=$(grep DATABASE_PASSWORD "$ENV_FILE" | cut -d '=' -f2)
+DB_PASSWORD=$(grep DATABASE_PASSWORD "$ENV_FILE" | head -n 1 | cut -d '=' -f2)
 
 if [ -z "$DB_NAME" ] || [ -z "$DB_USER" ] || [ -z "$DB_PASSWORD" ]; then
   error "Could not find all required database credentials in $ENV_FILE"
