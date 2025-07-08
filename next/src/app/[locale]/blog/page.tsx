@@ -66,6 +66,7 @@ const Blog: LocalizedPage<{ page?: string; query?: string }> = async function ({
         showPagination
         page={page}
         locale={locale}
+        className="px-4 lg:px-0"
       />
       <Suspense>
         <PageAnalytics contentId="blog" contentType="main" />

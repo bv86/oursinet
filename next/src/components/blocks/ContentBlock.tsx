@@ -13,7 +13,7 @@ export function ContentBlock({
   limit,
 }: Readonly<ContentBlockProps>) {
   return (
-    <section className="flex flex-col gap-4 w-full">
+    <section className="flex flex-col gap-4 w-full px-4 lg:px-0">
       {title && <h2 className="text-2xl font-bold">{title}</h2>}
       <ContentList
         path="/api/articles"

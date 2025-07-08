@@ -15,6 +15,7 @@ interface ContentListProps {
   showPagination?: boolean;
   locale: Locale;
   basePath: string;
+  className?: string;
 }
 
 async function loader(
@@ -41,6 +42,7 @@ export async function ContentList({
   showPagination,
   locale,
   basePath,
+  className = '',
 }: Readonly<ContentListProps>) {
   const { articles, pageCount } = await loader(
     locale,
@@ -52,7 +54,7 @@ export async function ContentList({
   const Component = component;
 
   return (
-    <section className="flex flex-col gap-8 items-center px-4 lg:px-0">
+    <section className={`flex flex-col gap-8 items-center ${className}`}>
       {showSearch && <Search locale={locale} />}
       <div className="w-full flex flex-col gap-4">
         {articles.map((article) => (
