@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "dev": "concurrently \"pnpm --filter cms dev\" \"pnpm --filter frontend dev\"",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
     "lint": "pnpm -r lint",
@@ -15,10 +16,11 @@
   "keywords": [],
   "author": "Benoit VANNESSON",
   "license": "ISC",
-  "packageManager": "pnpm@10.5.2",
+  "packageManager": "pnpm@10.25.0+sha512.5e82639027af37cf832061bcc6d639c219634488e0f2baebe785028a793de7b525ffcd3f7ff574f5e9860654e098fe852ba8ac5dd5cefe1767d23a020a92f501",
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
+    "concurrently": "^9.2.1",
     "husky": "^9.1.7",
     "next": "15.2.0",
     "react": "^19.1.0",

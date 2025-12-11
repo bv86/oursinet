@@ -20,7 +20,7 @@ DUMP_DIR="$PROJECT_ROOT/utils/db_dumps"
 DUMP_FILE="$DUMP_DIR/strapi_db_dump_$(date +%Y%m%d-%H%M%S).sql"
 ENV_FILE="$PROJECT_ROOT/strapi/.env"
 NAMESPACE="main"
-SERVICE_NAME="postgres-strapi-0"
+SERVICE_NAME="postgres-strapi-1"
 PORT_FORWARD_PID=""
 
 # Function for cleanup on exit
@@ -95,7 +95,7 @@ pkill -f "kubectl port-forward.*$PROD_PORT" 2>/dev/null || true
 
 # Step 3: Set up port forwarding to production database
 echo "🔄 Setting up port forwarding to production database on port $PROD_PORT..."
-kubectl port-forward -n "$NAMESPACE" "$SERVICE_NAME" "$PROD_PORT:5432" &
+kubectl port-forward -n "$NAMESPACE" "$SERVICE_NAME" "$PROD_PORT:$PROD_PORT" &
 PORT_FORWARD_PID=$!
 
 if ! ps -p $PORT_FORWARD_PID > /dev/null; then
