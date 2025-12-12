@@ -8,6 +8,10 @@ export const GA_MEASUREMENT_ID = getEnvString(
   'G-XXXXXXXXXX'
 );
 
+export const GORGIAS_BUNDLE_ID = getEnvString('GORGIAS_BUNDLE_ID', '');
+
+export const GORGIAS_CVT_ID = getEnvString('GORGIAS_CVT_ID', '');
+
 // Utility functions for tracking custom events
 
 export const trackPageView = (title: string, url: string) => {

@@ -6,7 +6,11 @@ import { type Locale } from '@/config';
 import { getGlobalSettings } from '@/lib/data/loaders';
 import Header from '@/components/layouts/Header';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { GA_MEASUREMENT_ID } from '@/lib/analytics';
+import {
+  GA_MEASUREMENT_ID,
+  GORGIAS_BUNDLE_ID,
+  GORGIAS_CVT_ID,
+} from '@/lib/analytics';
 import { getTranslation } from '@/i18n.utils';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
@@ -56,6 +60,25 @@ export default async function RootLayout(
         </div>
         {/* Google Analytics tag */}
         <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+        {/* Gorgias Chat */}
+
+        {/* Gorgias Chat Widget Start */}
+        {GORGIAS_BUNDLE_ID && (
+          <script
+            id="gorgias-chat-widget-install-v3"
+            src={`https://config.gorgias.chat/bundle-loader/${GORGIAS_BUNDLE_ID}`}
+          ></script>
+        )}
+        {/* Gorgias Chat Widget End */}
+
+        {/* Bundle Start */}
+        {GORGIAS_CVT_ID && (
+          <script
+            src={`https://cdn.9gtb.com/loader.js?g_cvt_id=${GORGIAS_CVT_ID}`}
+            async
+          ></script>
+        )}
+        {/* Bundle End */}
       </body>
     </html>
   );
