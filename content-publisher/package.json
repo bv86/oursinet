@@ -36,9 +36,9 @@
     "react-intl": "6.6.2"
   },
   "devDependencies": {
-    "@strapi/strapi": "5.16.1",
+    "@strapi/strapi": "5.32.0",
     "@strapi/sdk-plugin": "5.3.2",
-    "@strapi/types": "5.16.1",
+    "@strapi/types": "5.32.0",
     "prettier": "3.6.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -47,12 +47,12 @@
     "@types/react": "18.3.18",
     "@types/react-dom": "18.3.5",
     "@types/node": "^22",
-    "@strapi/typescript-utils": "^5.16.1",
+    "@strapi/typescript-utils": "^5.32.0",
     "typescript": "5.4.4"
   },
   "peerDependencies": {
-    "@strapi/strapi": "5.16.1",
-    "@strapi/sdk-plugin": "5.3.2",
+    "@strapi/strapi": "5.32.0",
+    "@strapi/sdk-plugin": "5.32.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "6.30.0",
