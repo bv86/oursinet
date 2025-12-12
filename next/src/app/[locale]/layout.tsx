@@ -16,7 +16,7 @@ export const revalidate = 3600; // Revalidate every hour
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
@@ -24,7 +24,7 @@ export async function generateMetadata({
       template: '%s',
       default: 'Oursi.net - Benoit Vannesson',
     },
-    description: await getTranslation(locale, 'meta.description'),
+    description: await getTranslation(locale as Locale, 'meta.description'),
   };
 }
 
@@ -37,18 +37,18 @@ async function loader(locale: Locale) {
 export default async function RootLayout(
   props: Readonly<{
     children: React.ReactNode;
-    params: Promise<{ locale: Locale }>;
+    params: Promise<{ locale: string }>;
   }>
 ) {
   const { locale } = await props.params;
   const { children } = props;
-  const { header, footer } = await loader(locale);
+  const { header, footer } = await loader(locale as Locale);
 
   return (
     <html lang={locale}>
       <body className={`${inter.className} antialiased h-screen`}>
         <div className="flex flex-col overflow-x-clip h-full items-center">
-          <Header data={header} locale={locale} />
+          <Header data={header} locale={locale as Locale} />
           <main className="container max-w-5xl flex flex-grow flex-col">
             {children}
           </main>
