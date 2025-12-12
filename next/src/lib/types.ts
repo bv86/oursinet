@@ -98,7 +98,8 @@ export interface HeadingProps extends Base<'blocks.heading'> {
   linkId?: string;
 }
 
-export interface ParagraphWithImageProps extends Base<'blocks.paragraph-with-image'> {
+export interface ParagraphWithImageProps
+  extends Base<'blocks.paragraph-with-image'> {
   content: string;
   image: ImageProps;
   reversed?: boolean;
