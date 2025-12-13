@@ -6,17 +6,11 @@ import { type Locale } from '@/config';
 import { getGlobalSettings } from '@/lib/data/loaders';
 import Header from '@/components/layouts/Header';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import {
-  GA_MEASUREMENT_ID,
-  GORGIAS_BUNDLE_ID,
-  GORGIAS_CVT_ID,
-} from '@/lib/analytics';
 import { getTranslation } from '@/i18n.utils';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
-export const revalidate = 3600; // Revalidate every hour
-
+export const revalidate = 3600; // Cache for 1 hour (in seconds)
 export async function generateMetadata({
   params,
 }: {
@@ -59,22 +53,24 @@ export default async function RootLayout(
           <Footer data={footer} />
         </div>
         {/* Google Analytics tag */}
-        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+        {process.env.GA_MEASUREMENT_ID && (
+          <GoogleAnalytics gaId={process.env.GA_MEASUREMENT_ID} />
+        )}
         {/* Gorgias Chat */}
 
         {/* Gorgias Chat Widget Start */}
-        {GORGIAS_BUNDLE_ID && (
+        {process.env.GORGIAS_BUNDLE_ID && (
           <script
             id="gorgias-chat-widget-install-v3"
-            src={`https://config.gorgias.chat/bundle-loader/${GORGIAS_BUNDLE_ID}`}
+            src={`https://config.gorgias.chat/bundle-loader/${process.env.GORGIAS_BUNDLE_ID}`}
           ></script>
         )}
         {/* Gorgias Chat Widget End */}
 
         {/* Bundle Start */}
-        {GORGIAS_CVT_ID && (
+        {process.env.GORGIAS_CVT_ID && (
           <script
-            src={`https://cdn.9gtb.com/loader.js?g_cvt_id=${GORGIAS_CVT_ID}`}
+            src={`https://cdn.9gtb.com/loader.js?g_cvt_id=${process.env.GORGIAS_CVT_ID}`}
             async
           ></script>
         )}
