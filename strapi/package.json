@@ -32,7 +32,6 @@
     "@strapi/plugin-users-permissions": "5.32.0",
     "@strapi/strapi": "5.32.0",
     "codemirror": "^6.0.2",
-    "content-publisher": "workspace:*",
     "pg": "^8.16.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",

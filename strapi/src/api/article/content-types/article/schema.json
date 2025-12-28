@@ -73,12 +73,6 @@
       "multiple": false,
       "required": false,
       "allowedTypes": ["images"]
-    },
-    "post": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::content-publisher.post",
-      "mappedBy": "article"
     }
   }
 }

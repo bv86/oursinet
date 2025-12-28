@@ -483,10 +483,6 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       'api::article.article'
     >;
     logo: Schema.Attribute.Media<'images'>;
-    post: Schema.Attribute.Relation<
-      'oneToOne',
-      'plugin::content-publisher.post'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
     tags: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'>;
@@ -689,46 +685,6 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface PluginContentPublisherPost
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'posts';
-  info: {
-    displayName: 'Post';
-    pluralName: 'posts';
-    singularName: 'post';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: true;
-    };
-    'content-type-builder': {
-      visible: true;
-    };
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    article: Schema.Attribute.Relation<'oneToOne', 'api::article.article'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    devToLink: Schema.Attribute.Text;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'plugin::content-publisher.post'
-    >;
-    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1250,7 +1206,6 @@ declare module '@strapi/strapi' {
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::page.page': ApiPagePage;
       'api::tag.tag': ApiTagTag;
-      'plugin::content-publisher.post': PluginContentPublisherPost;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
